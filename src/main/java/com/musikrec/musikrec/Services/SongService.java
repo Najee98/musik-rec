@@ -4,6 +4,6 @@ import com.musikrec.musikrec.Models.Song;
 
 public interface SongService {
 
-    Song getSongByName(String name);
+    Song getSongByName(String title);
 
 }

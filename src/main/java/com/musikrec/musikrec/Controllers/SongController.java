@@ -19,9 +19,9 @@ public class SongController {
     private final SongService songService;
 
     @GetMapping("/get")
-    public ResponseEntity<Song> getSongByName(@RequestParam String name) {
+    public ResponseEntity<Song> getSongByName(@RequestParam String title) {
 
-     return ResponseEntity.ok(songService.getSongByName(name));
+     return ResponseEntity.ok(songService.getSongByName(title));
 
     }
 

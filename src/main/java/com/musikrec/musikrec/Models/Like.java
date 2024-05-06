@@ -1,9 +1,17 @@
 package com.musikrec.musikrec.Models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "likes")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Like {
 
     @Id
@@ -11,6 +19,14 @@ public class Like {
     Long likeId;
 
     Long userId;
-    String comment;
+    Long songId;
+    Timestamp likeTimestamp;
+
+//    @OneToOne(mappedBy = "like")
+//    Song song;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "songId",referencedColumnName = "songId")
+//    Song song;
 
 }
