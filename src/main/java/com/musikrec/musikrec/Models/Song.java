@@ -15,11 +15,12 @@ import java.util.Set;
 public class Song {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long songId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "song_id")
+    Long id;
 
     String title;
-    String artistName;
+    String artist;
     String year;
 
 //    @OneToOne(cascade = CascadeType.ALL)

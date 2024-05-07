@@ -13,11 +13,10 @@ import lombok.NoArgsConstructor;
 public class Playlist {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "playlist_id")
+    Long id;
 
-    long playlistId;
-
-
-    String playlistName;
-    String playlistDescription;
+    String name;
+    String description;
 }

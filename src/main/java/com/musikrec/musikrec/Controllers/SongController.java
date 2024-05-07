@@ -21,7 +21,7 @@ public class SongController {
     @GetMapping("/get")
     public ResponseEntity<Song> getSongByName(@RequestParam String title) {
 
-     return ResponseEntity.ok(songService.getSongByName(title));
+        return ResponseEntity.ok(songService.getSongByTitle(title));
 
     }
 

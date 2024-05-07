@@ -16,12 +16,12 @@ import java.util.Set;
 public class Recommendation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    Long recommendationId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "recommendation_id")
+    Long id;
 
     Long userId;
-    String recommendedSongId;
+    String songId;
     Timestamp recommendationTimestamp;
 
 //    @ManyToMany(mappedBy = "likedRecommendations")

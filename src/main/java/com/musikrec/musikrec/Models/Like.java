@@ -15,8 +15,9 @@ import java.sql.Timestamp;
 public class Like {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long likeId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "like_id")
+    Long id;
 
     Long userId;
     Long songId;

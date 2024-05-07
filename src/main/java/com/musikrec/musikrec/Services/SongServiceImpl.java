@@ -6,15 +6,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-    @Service
-    @RequiredArgsConstructor
-    public class SongServiceImpl implements SongService{
+@Service
+@RequiredArgsConstructor
+public class SongServiceImpl implements SongService {
 
     private final SongRepository songRepository;
 
-
     @Override
-    public Song getSongByName(String title) {
-        return songRepository.findByTitle(title) ;
+    public Song getSongByTitle(String title) {
+        return songRepository.findByTitle(title);
     }
 }

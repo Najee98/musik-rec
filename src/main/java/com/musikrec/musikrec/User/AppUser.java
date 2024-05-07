@@ -22,7 +22,7 @@ import java.util.List;
 public class AppUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String firstName;
