@@ -12,8 +12,9 @@ public class LikeServiceImpl implements LikeService {
     private final LikeRepository likeRepository;
 
     @Override
-    public Like getLikeId(Long likeId) {
-        return likeRepository.findById(likeId).orElse(null);
+    public Like getLikeId(Long id) {
+
+        return likeRepository.findById(id).orElse(null);
     }
 
 }

@@ -1,10 +1,10 @@
 package com.musikrec.musikrec.Models;
 
+import com.musikrec.musikrec.User.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.sql.Timestamp;
 
 @Entity
@@ -17,17 +17,22 @@ public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "like_id")
-    Long id;
+    private Long like_id;
 
-    Long userId;
-    Long songId;
-    Timestamp likeTimestamp;
+    private Timestamp like_timestamp;
 
-//    @OneToOne(mappedBy = "like")
-//    Song song;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "songId",referencedColumnName = "songId")
-//    Song song;
+
+    //The Relationship Between likes And songs://
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "song_id",referencedColumnName = "song_id")
+    private Song song;
+
+
+
+    //The Relationship Between users And likes://
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AppUser appUser;
 
 }

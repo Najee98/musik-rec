@@ -1,5 +1,7 @@
 package com.musikrec.musikrec.User;
 
+import com.musikrec.musikrec.Models.Like;
+import com.musikrec.musikrec.Models.Song;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 //build the object using the builder design pattern
@@ -70,4 +73,22 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+
+
+    //The Relationship Between users And songs://
+    @ManyToMany
+    @JoinTable(
+                name = "user_song_id",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "song_id"))
+    private Set<Song> userSongs;
+
+
+
+    //The Relationship Between users And likes://
+    @OneToMany(mappedBy = "appUser")
+    private Set<Like>likes;
+
 }
