@@ -3,13 +3,10 @@ package com.musikrec.musikrec.Controllers;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Services.SongService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,11 +15,32 @@ public class SongController {
 
     private final SongService songService;
 
-    @GetMapping("/get")
-    public ResponseEntity<Song> getSongByName(@RequestParam String title) {
+    @GetMapping()
+    public ResponseEntity<List<Song>> getAllSongs() {
+        return ResponseEntity.ok(songService.getAllSongs());
+    }
 
-        return ResponseEntity.ok(songService.getSongByTitle(title));
+    // path variable: songs/get/1
+    // request param: songs/get?id=1
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Song> getSongByName(@PathVariable Long id) {
+        return ResponseEntity.ok(songService.getSong(id));
+    }
 
+    //request body: when receiving JSON from front-end
+    @PostMapping("/add")
+    public void insertSong(@RequestBody Song song) {
+        songService.insertSong(song);
+    }
+
+    @PutMapping("/update")
+    public void updateSong(@RequestBody Song song) {
+        songService.updateSong(song);
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteSong(@RequestParam Long id) {
+        songService.deleteSong(id);
     }
 
 }

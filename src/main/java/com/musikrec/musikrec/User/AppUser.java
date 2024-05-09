@@ -80,15 +80,14 @@ public class AppUser implements UserDetails {
     //The Relationship Between users And songs://
     @ManyToMany
     @JoinTable(
-                name = "user_song_id",
+                name = "user_song",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "song_id"))
-    private Set<Song> userSongs;
-
+    private List<Song> userSongs;
 
 
     //The Relationship Between users And likes://
     @OneToMany(mappedBy = "appUser")
-    private Set<Like>likes;
+    private List<Like>likes;
 
 }

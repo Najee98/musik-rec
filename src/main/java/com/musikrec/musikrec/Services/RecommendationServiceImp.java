@@ -13,9 +13,9 @@ public class RecommendationServiceImp implements RecommendationService{
     private final RecommendationRepository recommendationRepository ;
 
     @Override
-
     public Recommendation getRecommendationById (Long id)
     {
-        return recommendationRepository.findById(id).orElse(null);
+        return recommendationRepository.findById(id)
+                .orElse(null);
     }
 }

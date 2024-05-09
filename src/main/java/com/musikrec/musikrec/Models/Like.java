@@ -17,10 +17,9 @@ public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "like_id")
-    private Long like_id;
+    private Long id;
 
-    private Timestamp like_timestamp;
-
+    private Timestamp timestamp;
 
 
     //The Relationship Between likes And songs://

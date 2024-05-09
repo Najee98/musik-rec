@@ -17,15 +17,11 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "playlist_id")
-    private Long playlist_id;
-
-    private String playlist_description;
-
-    private String playlist_name;
+    private Long id;
 
     private String description;
 
-
+    private String name;
 
     //The Relationship Between songs And playlists://
     @ManyToMany(mappedBy = "songPlaylists")

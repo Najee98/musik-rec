@@ -4,5 +4,5 @@ import com.musikrec.musikrec.Models.Playlist;
 
 public interface PlaylistService {
 
-    Playlist getPlaylistByName (String Playlist_name);
+    Playlist getPlaylistByName (String playlistName);
 }

@@ -12,9 +12,8 @@ public class PlaylistServiceImp implements PlaylistService {
 
     private final PlaylistRepository playlistRepository;
 
-
-    public Playlist getPlaylistByName(String Playlist_name)
+    public Playlist getPlaylistByName(String playlistName)
     {
-        return playlistRepository.findByPlaylist (Playlist_name);
+        return playlistRepository.findByName(playlistName);
     }
 }

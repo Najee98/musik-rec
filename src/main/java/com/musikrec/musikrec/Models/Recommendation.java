@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,19 +18,17 @@ public class Recommendation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recommendation_id")
-    private Long recommendation_id;
+    private Long id;
 
-    private Long user_id;
+    private Long userId;
 
-    private String recommendation_song_id;
+    private String songId;
 
-    private String song_id;
-
-    private Timestamp recommendation_timestamp;
+    private Timestamp timestamp;
 
 
     //The Relationship Between songs And recommendations://
-    @ManyToMany(mappedBy = "songRecommendations")
-    private Set<Song> likes;
+    @OneToOne(mappedBy = "recommendation")
+    private Song song;
 
 }
