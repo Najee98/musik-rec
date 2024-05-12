@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Models;
 
+import com.musikrec.musikrec.User.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,16 @@ public class Playlist {
 
     private String name;
 
+
     //The Relationship Between songs And playlists://
     @ManyToMany(mappedBy = "songPlaylists")
     private Set<Song> songs ;
+
+
+    //The Relationship Between users And playlist://
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AppUser appUser;
+
+
 }
