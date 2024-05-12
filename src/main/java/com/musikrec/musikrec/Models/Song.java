@@ -41,13 +41,6 @@ public class Song {
     private List<AppUser> users ;
 
 
-
-    //The Relationship Between songs And recommendations://
-    @OneToOne(cascade = CascadeType.ALL)
-    private Recommendation recommendation;
-
-
-
     //The Relationship Between songs And playlists://
     @ManyToMany
     @JoinTable(
@@ -57,6 +50,7 @@ public class Song {
     private Set<Playlist> songPlaylists;
 
 }
+
 
 
 
