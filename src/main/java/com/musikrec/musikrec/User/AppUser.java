@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.User;
 
 import com.musikrec.musikrec.Models.Like;
+import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Data
 //build the object using the builder design pattern
@@ -89,5 +89,12 @@ public class AppUser implements UserDetails {
     //The Relationship Between users And likes://
     @OneToMany(mappedBy = "appUser")
     private List<Like>likes;
+
+
+    //The Relationship Between users And playlist://
+    @OneToMany(mappedBy = "appUser")
+    private List<Playlist>playlists;
+
+
 
 }
