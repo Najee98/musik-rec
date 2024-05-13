@@ -34,7 +34,7 @@ public class AuthenticationService {
 
         userRepository.save(user);
 
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = "Bearer " + jwtService.generateToken(user);
 
         return AuthenticationResponse
                 .builder()
@@ -53,7 +53,7 @@ public class AuthenticationService {
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found during authentication."));
 
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = "Bearer " + jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
