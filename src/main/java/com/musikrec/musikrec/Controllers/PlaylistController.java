@@ -22,9 +22,9 @@ public class PlaylistController {
     }
 
 
-    @GetMapping("/get/{name}")
-    public ResponseEntity<Playlist> getPlaylist(@PathVariable String name) {
-        return ResponseEntity.ok(playlistService.getPlaylist(name));
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Playlist> getPlaylist(@PathVariable Long id) {
+        return ResponseEntity.ok(playlistService.getPlaylist(id));
     }
 
 

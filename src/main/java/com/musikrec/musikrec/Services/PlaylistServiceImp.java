@@ -21,8 +21,8 @@ public class PlaylistServiceImp implements PlaylistService {
     }
 
     @Override
-    public Playlist getPlaylist(String name) {
-        return playlistRepository.findByName(name)
+    public Playlist getPlaylist(Long id) {
+        return playlistRepository.findById(id)
              .orElseThrow(() -> new ResourceNotFoundException("playlist not found"));
     }
 
@@ -40,7 +40,7 @@ public class PlaylistServiceImp implements PlaylistService {
     @Override
     public void updatePlaylist(Playlist playlist) {
 
-        Optional<Playlist> playlistOptional = playlistRepository.findByName(playlist.getName());
+        Optional<Playlist> playlistOptional = playlistRepository.findById(playlist.getId());
 
         if(playlistOptional.isPresent()){
             playlistOptional.get().setName(playlist.getName());

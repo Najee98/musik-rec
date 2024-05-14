@@ -9,7 +9,7 @@ public interface PlaylistService {
     List<Playlist> getAllPlaylist ();
 
 
-    Playlist getPlaylist (String name);
+    Playlist getPlaylist (Long id);
 
 
     void insertPlaylist(Playlist playlist);
