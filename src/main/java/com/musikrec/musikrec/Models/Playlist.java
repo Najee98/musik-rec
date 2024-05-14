@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +29,7 @@ public class Playlist {
 
     //The Relationship Between songs And playlists://
     @ManyToMany(mappedBy = "songPlaylists")
-    private Set<Song> songs ;
+    private List<Song> songs = new ArrayList<>();
 
 
     //The Relationship Between users And playlist://
@@ -35,5 +37,8 @@ public class Playlist {
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 
-
+    public void addSong(Song song) {
+        this.songs.add(song);
+        song.getSongPlaylists().add(this);
+    }
 }

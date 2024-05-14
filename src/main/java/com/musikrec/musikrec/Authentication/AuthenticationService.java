@@ -3,6 +3,7 @@ package com.musikrec.musikrec.Authentication;
 import com.musikrec.musikrec.Authentication.Dto.AuthenticationRequest;
 import com.musikrec.musikrec.Authentication.Dto.AuthenticationResponse;
 import com.musikrec.musikrec.Authentication.Dto.RegisterRequest;
+import com.musikrec.musikrec.Exceptions.CustomExceptions.AuthenticationException;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
 import com.musikrec.musikrec.Security.JWT.JwtService;
 import com.musikrec.musikrec.User.AppUser;
@@ -23,7 +24,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws AuthenticationException {
         var user = AppUser.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -42,7 +43,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws AuthenticationException{
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

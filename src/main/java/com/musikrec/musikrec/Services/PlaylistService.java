@@ -12,7 +12,7 @@ public interface PlaylistService {
     Playlist getPlaylist (Long id);
 
 
-    void insertPlaylist(Playlist playlist);
+    Playlist insertPlaylist(Playlist playlist);
 
 
     void updatePlaylist(Playlist playlist);

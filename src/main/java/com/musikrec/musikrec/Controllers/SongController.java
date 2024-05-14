@@ -3,6 +3,7 @@ package com.musikrec.musikrec.Controllers;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Services.SongService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,18 +30,28 @@ public class SongController {
 
     //request body: when receiving JSON from front-end
     @PostMapping("/add")
-    public void insertSong(@RequestBody Song song) {
-        songService.insertSong(song);
+    public ResponseEntity<Song> insertSong(@RequestBody Song song) {
+        return new ResponseEntity<>(songService.insertSong(song), HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public void updateSong(@RequestBody Song song) {
-        songService.updateSong(song);
+    public ResponseEntity<Song> updateSong(@RequestBody Song song) {
+        return new ResponseEntity<>(songService.updateSong(song), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
     public void deleteSong(@RequestParam Long id) {
         songService.deleteSong(id);
+    }
+
+    @PostMapping("/add-to-playlist")
+    public ResponseEntity<Object> addSongToPlaylist(
+            @RequestParam Long songId,
+            @RequestParam Long playlistId){
+        songService.addSongToPlaylist(songId, playlistId);
+
+        return new ResponseEntity<>("{ \"message\": \" Song added to playlist successfully  \" }" , HttpStatus.OK);
+
     }
 
 }

@@ -1,7 +1,9 @@
 package com.musikrec.musikrec.Services;
 
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
+import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
+import com.musikrec.musikrec.Repositories.PlaylistRepository;
 import com.musikrec.musikrec.Repositories.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class SongServiceImpl implements SongService {
 
     private final SongRepository songRepository;
 
+    private final PlaylistRepository playlistRepository;
+
     @Override
     public List<Song> getAllSongs() {
         return songRepository.findAll();
@@ -27,18 +31,18 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public void insertSong(Song song) {
+    public Song insertSong(Song song) {
         Song newSong = new Song();
 
         newSong.setAlbum(song.getAlbum());
         newSong.setTitle(song.getTitle());
         newSong.setArtist(song.getArtist());
 
-        songRepository.save(newSong);
+        return songRepository.save(newSong);
     }
 
     @Override
-    public void updateSong(Song song) {
+    public Song updateSong(Song song) {
 
         Optional<Song> songOptional = songRepository.findById(song.getId());
 
@@ -47,7 +51,7 @@ public class SongServiceImpl implements SongService {
             songOptional.get().setArtist(song.getArtist());
             songOptional.get().setTitle(song.getTitle());
 
-            songRepository.save(songOptional.get());
+            return songRepository.save(songOptional.get());
         }else{
             throw new ResourceNotFoundException("Song not found");
         }
@@ -64,5 +68,19 @@ public class SongServiceImpl implements SongService {
             songRepository.deleteById(id);
             return id;
         }
+    }
+
+    @Override
+    public void addSongToPlaylist(Long songId, Long playlistId) {
+        Optional<Song> song = Optional.ofNullable(songRepository.findById(songId)
+                .orElseThrow(() -> new ResourceNotFoundException("Song not found!")));
+
+        Optional<Playlist> playlist = Optional.ofNullable(playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Playlist not found!")));
+
+        playlist.get().addSong(song.get());
+
+        playlistRepository.save(playlist.get());
+
     }
 }

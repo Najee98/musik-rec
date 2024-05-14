@@ -29,8 +29,8 @@ public class PlaylistController {
 
 
     @PostMapping("/add")
-    public void insertPlaylist(@RequestBody Playlist playlist) {
-        playlistService.insertPlaylist(playlist);
+    public ResponseEntity<Playlist> insertPlaylist(@RequestBody Playlist playlist) {
+        return ResponseEntity.ok(playlistService.insertPlaylist(playlist));
     }
 
 

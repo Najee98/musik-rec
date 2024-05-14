@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "songs")
@@ -47,7 +46,7 @@ public class Song {
             name = "song_playlist",
             joinColumns = @JoinColumn(name = "song_id"),
             inverseJoinColumns = @JoinColumn(name = "playlist_id"))
-    private Set<Playlist> songPlaylists;
+    private List<Playlist> songPlaylists;
 
 }
 

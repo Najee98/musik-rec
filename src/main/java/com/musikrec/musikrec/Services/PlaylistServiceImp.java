@@ -27,14 +27,13 @@ public class PlaylistServiceImp implements PlaylistService {
     }
 
     @Override
-    public void insertPlaylist(Playlist playlist) {
+    public Playlist insertPlaylist(Playlist playlist) {
         Playlist newPlaylist = new Playlist();
 
         newPlaylist.setName(playlist.getName());
         newPlaylist.setDescription(playlist.getDescription());
 
-        playlistRepository.save(newPlaylist);
-
+        return playlistRepository.save(newPlaylist);
     }
 
     @Override

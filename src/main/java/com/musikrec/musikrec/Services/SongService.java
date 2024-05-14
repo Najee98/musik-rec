@@ -13,12 +13,13 @@ public interface SongService {
     Song getSong(Long id);
 
 
-    void insertSong(Song song);
+    Song insertSong(Song song);
 
 
-    void updateSong(Song song);
+    Song updateSong(Song song);
 
 
     Long deleteSong(Long id);
 
+    void addSongToPlaylist(Long songId, Long playlistId);
 }
