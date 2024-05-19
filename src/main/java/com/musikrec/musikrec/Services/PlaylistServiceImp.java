@@ -3,9 +3,12 @@ package com.musikrec.musikrec.Services;
 
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
 import com.musikrec.musikrec.Models.Playlist;
+import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.PlaylistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +17,7 @@ import java.util.Optional;
 public class PlaylistServiceImp implements PlaylistService {
 
     private final PlaylistRepository playlistRepository;
+
 
     @Override
     public List<Playlist> getAllPlaylist() {
@@ -63,5 +67,17 @@ public class PlaylistServiceImp implements PlaylistService {
             playlistRepository.deleteById(id);
             return id;
         }
+    }
+
+
+    @Override
+    public  List<Song> getAllSongsFromPlaylist(Long playlistId){
+
+        // Search For Playlist
+        Optional<Playlist> playlist = Optional.ofNullable(playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Playlist not found!")));
+
+        return new ArrayList<>(playlist.get().getSongs());
+
     }
 }

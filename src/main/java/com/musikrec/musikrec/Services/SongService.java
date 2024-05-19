@@ -21,5 +21,9 @@ public interface SongService {
 
     Long deleteSong(Long id);
 
+
     void addSongToPlaylist(Long songId, Long playlistId);
+
+
+    void removeSongFromPlaylist(Long songId, Long playlistId);
 }

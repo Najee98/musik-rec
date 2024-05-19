@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.Services;
 
 import com.musikrec.musikrec.Models.Playlist;
+import com.musikrec.musikrec.Models.Song;
 
 import java.util.List;
 
@@ -19,4 +20,8 @@ public interface PlaylistService {
 
 
     Long deletePlaylist(Long id);
+
+
+
+    List<Song> getAllSongsFromPlaylist(Long playlistId);
 }

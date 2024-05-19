@@ -2,8 +2,10 @@ package com.musikrec.musikrec.Controllers;
 
 
 import com.musikrec.musikrec.Models.Playlist;
+import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Services.PlaylistService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -43,6 +45,15 @@ public class PlaylistController {
     @DeleteMapping("/delete")
     public void deletePlaylist(@RequestParam Long id) {
         playlistService.deletePlaylist(id);
+    }
+
+
+    @GetMapping("/get-all-song-from-playlist")
+    public ResponseEntity<List<Song>> getAllSongFromPlaylist(@RequestParam Long playlistId) {
+
+        List<Song> songs = playlistService.getAllSongsFromPlaylist(playlistId);
+
+        return new ResponseEntity<>(songs , HttpStatus.OK);
     }
 
 }

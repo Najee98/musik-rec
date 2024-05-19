@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.musikrec.musikrec.User.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "playlists")
@@ -29,6 +29,7 @@ public class Playlist {
 
     //The Relationship Between songs And playlists://
     @ManyToMany(mappedBy = "songPlaylists")
+    @JsonBackReference
     private List<Song> songs = new ArrayList<>();
 
 
@@ -41,4 +42,11 @@ public class Playlist {
         this.songs.add(song);
         song.getSongPlaylists().add(this);
     }
+
+
+    public void removeSong(Song song) {
+        this.songs.remove(song);
+        song.getSongPlaylists().remove(this);
+    }
+
 }

@@ -72,15 +72,35 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public void addSongToPlaylist(Long songId, Long playlistId) {
+        // Search For Songs
         Optional<Song> song = Optional.ofNullable(songRepository.findById(songId)
                 .orElseThrow(() -> new ResourceNotFoundException("Song not found!")));
 
+        // Search For Playlist
         Optional<Playlist> playlist = Optional.ofNullable(playlistRepository.findById(playlistId)
                 .orElseThrow(() -> new ResourceNotFoundException("Playlist not found!")));
 
+        // Add The Song From The Playlist
         playlist.get().addSong(song.get());
 
+        // Save Changes
         playlistRepository.save(playlist.get());
 
+    }
+    @Override
+    public void removeSongFromPlaylist(Long songId, Long playlistId) {
+        // Search For Songs
+        Optional<Song> song =Optional.ofNullable(songRepository.findById(songId)
+                .orElseThrow(() -> new ResourceNotFoundException("Song not found!")));
+
+        // Search For Playlist
+        Optional<Playlist> playlist =Optional.ofNullable(playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Playlist not found!")));
+
+        // Remove The Song From The Playlist
+        playlist.get().removeSong(song.get());
+
+        // Save Changes
+        playlistRepository.save(playlist.get());
     }
 }

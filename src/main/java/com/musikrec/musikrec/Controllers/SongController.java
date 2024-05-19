@@ -54,4 +54,11 @@ public class SongController {
 
     }
 
+    @DeleteMapping("/delete-from-playlist")
+    public ResponseEntity<Object> deleteSongFromPlaylist(@RequestParam Long songId, @RequestParam Long playlistId) {
+        songService.removeSongFromPlaylist(songId,playlistId);
+
+        return new ResponseEntity<>("{\"message\": \" Song deleted from the playlist successfully  \" }", HttpStatus.OK);
+    }
+
 }
