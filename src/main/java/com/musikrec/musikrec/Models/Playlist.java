@@ -26,14 +26,10 @@ public class Playlist {
 
     private String name;
 
-
-    //The Relationship Between songs And playlists://
     @ManyToMany(mappedBy = "songPlaylists")
     @JsonBackReference
     private List<Song> songs = new ArrayList<>();
 
-
-    //The Relationship Between users And playlist://
     @ManyToOne
     @JoinColumn(name = "user_id")
     private AppUser appUser;

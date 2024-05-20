@@ -1,6 +1,6 @@
 package com.musikrec.musikrec.Services;
 
-import com.musikrec.musikrec.Dto.SongResponse;
+import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
 import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
@@ -22,17 +22,17 @@ public class SongServiceImpl implements SongService {
     private final PlaylistRepository playlistRepository;
 
     @Override
-    public List<SongResponse> getAllSongs() {
+    public List<SongResponseDto> getAllSongs() {
         List<Song> songs = songRepository.findAll();
 
-        List<SongResponse> responseList = new ArrayList<>();
+        List<SongResponseDto> responseList = new ArrayList<>();
 
         for (Song s : songs) {
-            SongResponse response = new SongResponse();
-            response.setSongId(s.getId());
-            response.setSongName(s.getTitle());
-            response.setSongArtist(s.getArtist());
-            response.setSongAlbum(s.getAlbum());
+            SongResponseDto response = new SongResponseDto();
+            response.setId(s.getId());
+            response.setName(s.getTitle());
+            response.setArtist(s.getArtist());
+            response.setAlbum(s.getAlbum());
 
             responseList.add(response);
         }

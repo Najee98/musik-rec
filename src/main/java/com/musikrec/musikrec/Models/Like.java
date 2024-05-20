@@ -21,14 +21,10 @@ public class Like {
 
     private Timestamp timestamp;
 
-
-    //The Relationship Between likes And songs://
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "song_id",referencedColumnName = "song_id")
     private Song song;
 
-
-    //The Relationship Between users And likes://
     @ManyToOne
     @JoinColumn(name = "user_id")
     private AppUser appUser;

@@ -1,6 +1,8 @@
 package com.musikrec.musikrec.Controllers;
 
 
+import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
+import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
 import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Services.PlaylistService;
@@ -19,8 +21,8 @@ public class PlaylistController {
     private final PlaylistService playlistService;
 
     @GetMapping()
-    public ResponseEntity<List<Playlist>> getAllPlaylist() {
-        return ResponseEntity.ok(playlistService.getAllPlaylist());
+    public ResponseEntity<List<PlaylistResponseDto>> getAllPlaylistForUser(@RequestParam Long userId) {
+        return ResponseEntity.ok(playlistService.getAllPlaylistsForUser(userId));
     }
 
 
@@ -31,8 +33,8 @@ public class PlaylistController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<Playlist> insertPlaylist(@RequestBody Playlist playlist) {
-        return ResponseEntity.ok(playlistService.insertPlaylist(playlist));
+    public ResponseEntity<Playlist> insertPlaylist(@RequestBody PlaylistRequestDto request) {
+        return ResponseEntity.ok(playlistService.insertPlaylist(request));
     }
 
 

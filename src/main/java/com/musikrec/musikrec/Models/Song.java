@@ -31,17 +31,12 @@ public class Song {
 
     private String releaseYear;
 
-    //The Relationship Between songs And likes://
     @OneToOne(mappedBy = "song")
     private Like like;
 
-
-    //The Relationship Between songs And users://
     @ManyToMany(mappedBy = "userSongs")
     private List<AppUser> users ;
 
-
-    //The Relationship Between songs And playlists://
     @ManyToMany
     @JoinTable(
             name = "song_playlist",
