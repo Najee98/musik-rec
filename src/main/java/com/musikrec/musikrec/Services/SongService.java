@@ -2,12 +2,13 @@ package com.musikrec.musikrec.Services;
 
 
 
+import com.musikrec.musikrec.Dto.SongResponse;
 import com.musikrec.musikrec.Models.Song;
 import java.util.List;
 
 public interface SongService {
 
-    List<Song> getAllSongs();
+    List<SongResponse> getAllSongs();
 
 
     Song getSong(Long id);

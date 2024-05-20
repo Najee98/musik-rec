@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Controllers;
 
+import com.musikrec.musikrec.Dto.SongResponse;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Services.SongService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class SongController {
     private final SongService songService;
 
     @GetMapping()
-    public ResponseEntity<List<Song>> getAllSongs() {
+    public ResponseEntity<List<SongResponse>> getAllSongs() {
         return ResponseEntity.ok(songService.getAllSongs());
     }
 

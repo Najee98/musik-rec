@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Services;
 
+import com.musikrec.musikrec.Dto.SongResponse;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
 import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
@@ -8,6 +9,7 @@ import com.musikrec.musikrec.Repositories.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +22,22 @@ public class SongServiceImpl implements SongService {
     private final PlaylistRepository playlistRepository;
 
     @Override
-    public List<Song> getAllSongs() {
-        return songRepository.findAll();
+    public List<SongResponse> getAllSongs() {
+        List<Song> songs = songRepository.findAll();
+
+        List<SongResponse> responseList = new ArrayList<>();
+
+        for (Song s : songs) {
+            SongResponse response = new SongResponse();
+            response.setSongId(s.getId());
+            response.setSongName(s.getTitle());
+            response.setSongArtist(s.getArtist());
+            response.setSongAlbum(s.getAlbum());
+
+            responseList.add(response);
+        }
+
+        return responseList;
     }
 
     @Override
