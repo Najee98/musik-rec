@@ -1,4 +1,4 @@
-package com.musikrec.musikrec.Integration.Utils;
+package com.musikrec.musikrec.Integration.ApiResponse;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

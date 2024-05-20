@@ -1,7 +1,7 @@
 package com.musikrec.musikrec.Integration;
 
-import com.musikrec.musikrec.Integration.Utils.LastFmResponse;
-import com.musikrec.musikrec.Integration.Utils.Track;
+import com.musikrec.musikrec.Integration.ApiResponse.LastFmResponse;
+import com.musikrec.musikrec.Integration.ApiResponse.Track;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
