@@ -7,6 +7,7 @@ import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundExcepti
 import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.PlaylistRepository;
+import com.musikrec.musikrec.User.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.Optional;
 public class PlaylistServiceImp implements PlaylistService {
 
     private final PlaylistRepository playlistRepository;
-
+    private final AppUserRepository userRepository;
 
     @Override
     public List<Playlist> getAllPlaylist() {
@@ -38,6 +39,9 @@ public class PlaylistServiceImp implements PlaylistService {
 
         newPlaylist.setName(request.getName());
         newPlaylist.setDescription(request.getDescription());
+        newPlaylist.setAppUser(
+                userRepository.findById(request.getUserId().intValue())
+                        .orElseThrow(() -> new ResourceNotFoundException("User doesn't exist.")));
 
         return playlistRepository.save(newPlaylist);
     }

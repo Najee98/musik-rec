@@ -14,4 +14,6 @@ public class PlaylistRequestDto implements Serializable {
     private String name;
     private String description;
 
+    private Long userId;
+
 }

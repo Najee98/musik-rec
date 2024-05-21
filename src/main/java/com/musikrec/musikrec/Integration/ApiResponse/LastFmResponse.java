@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LastFmResponse {
-    private Tracks tracks;
+    private LastFmTracks lastFmTracks;
 
-    public Tracks getTracks() {
-        return tracks;
+    public LastFmTracks getTracks() {
+        return lastFmTracks;
     }
 
-    public void setTracks(Tracks tracks) {
-        this.tracks = tracks;
+    public void setTracks(LastFmTracks lastFmTracks) {
+        this.lastFmTracks = lastFmTracks;
     }
 
 }

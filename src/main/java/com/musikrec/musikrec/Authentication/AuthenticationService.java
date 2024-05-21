@@ -16,6 +16,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -26,13 +28,11 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) throws AuthenticationException {
-
-        AppUser user = userRepository.findByEmail(request.getEmail()).get();
-
-        if (user != null)
+        Optional<AppUser> existingUser = userRepository.findByEmail(request.getEmail());
+        if (existingUser.isPresent()) {
             throw new DuplicatedResourceException("Username already used.");
-        else {
-            user = AppUser.builder()
+        } else {
+            AppUser user = AppUser.builder()
                     .firstName(request.getFirstName())
                     .lastName(request.getLastName())
                     .email(request.getEmail())
@@ -44,21 +44,20 @@ public class AuthenticationService {
 
             var jwtToken = "Bearer " + jwtService.generateToken(user);
 
-            return AuthenticationResponse
-                    .builder()
+            return AuthenticationResponse.builder()
                     .token(jwtToken)
                     .build();
         }
-
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) throws AuthenticationException{
+
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws AuthenticationException {
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
-        ));
+                ));
 
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found during authentication."));

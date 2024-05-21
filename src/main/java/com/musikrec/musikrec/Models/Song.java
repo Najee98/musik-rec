@@ -23,13 +23,15 @@ public class Song {
 
     private String title;
 
-    private String album;
-
     private String artist;
 
     private String genre;
 
     private String releaseYear;
+
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
 
     @OneToOne(mappedBy = "song")
     private Like like;

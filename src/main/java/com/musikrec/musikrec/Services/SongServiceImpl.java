@@ -32,7 +32,6 @@ public class SongServiceImpl implements SongService {
             response.setId(s.getId());
             response.setName(s.getTitle());
             response.setArtist(s.getArtist());
-            response.setAlbum(s.getAlbum());
 
             responseList.add(response);
         }

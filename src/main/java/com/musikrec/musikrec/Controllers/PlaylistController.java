@@ -8,6 +8,7 @@ import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Services.PlaylistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -33,8 +34,9 @@ public class PlaylistController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<Playlist> insertPlaylist(@RequestBody PlaylistRequestDto request) {
-        return ResponseEntity.ok(playlistService.insertPlaylist(request));
+    public ResponseEntity<Object> insertPlaylist(@RequestBody PlaylistRequestDto request) {
+        playlistService.insertPlaylist(request);
+        return new ResponseEntity<>("{ \"message\": \" Playlist added successfully \" }", HttpStatus.OK);
     }
 
 
