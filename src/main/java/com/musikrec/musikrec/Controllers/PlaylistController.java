@@ -27,9 +27,9 @@ public class PlaylistController {
     }
 
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Playlist> getPlaylist(@PathVariable Long id) {
-        return ResponseEntity.ok(playlistService.getPlaylist(id));
+    @GetMapping("/get/{playlistId}")
+    public ResponseEntity<PlaylistResponseDto> getPlaylist(@RequestParam Long userId, @PathVariable Long playlistId) {
+        return ResponseEntity.ok(playlistService.getPlaylist(userId, playlistId));
     }
 
 

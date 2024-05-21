@@ -23,14 +23,13 @@ public class PlaylistServiceImp implements PlaylistService {
     private final AppUserRepository userRepository;
 
     @Override
-    public List<Playlist> getAllPlaylist() {
-        return playlistRepository.findAll();
-    }
+    public PlaylistResponseDto getPlaylist(Long userId, Long playlistId) {
+        PlaylistResponseDto response = playlistRepository.getPlaylist(userId, playlistId);
 
-    @Override
-    public Playlist getPlaylist(Long id) {
-        return playlistRepository.findById(id)
-             .orElseThrow(() -> new ResourceNotFoundException("playlist not found"));
+        if(response == null)
+            throw new ResourceNotFoundException("Playlist doesn't exist");
+
+        return response;
     }
 
     @Override

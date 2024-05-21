@@ -19,4 +19,11 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
             "from Playlist p where p.appUser.id = :userId")
     List<PlaylistResponseDto> getAllPlaylistsForUser(@Param("userId") Long userId);
 
+    @Query("select new com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto(" +
+            "p.id," +
+            "p.name," +
+            "p.description)" +
+            "from Playlist p " +
+            "where p.appUser.id = :userId and p.id = :playlistId")
+    PlaylistResponseDto getPlaylist(@Param("userId") Long userId,@Param("playlistId") Long playlistId);
 }
