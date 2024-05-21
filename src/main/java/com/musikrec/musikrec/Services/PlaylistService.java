@@ -9,9 +9,6 @@ import java.util.List;
 
 public interface PlaylistService {
 
-    List<Playlist> getAllPlaylist ();
-
-
     Playlist getPlaylist (Long id);
 
 
