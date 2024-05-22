@@ -11,10 +11,8 @@ public interface LikeService {
     List<LikeResponseDto> getAllLikeForUser(Long userId);
 
 
-    Like getLike(Long id);
 
-
-    void insertLike(Like like);
+    void insertLike(Long songId,Long userId);
 
 
     Long deleteLike(Long id);

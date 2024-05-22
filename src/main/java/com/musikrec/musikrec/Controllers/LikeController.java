@@ -1,7 +1,6 @@
 package com.musikrec.musikrec.Controllers;
 
 import com.musikrec.musikrec.Dto.Responses.LikeResponseDto;
-import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Models.Like;
 import com.musikrec.musikrec.Services.LikeService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/likes")
@@ -25,15 +25,9 @@ public class LikeController {
     }
 
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Like> getLike(@PathVariable Long id) {
-        return ResponseEntity.ok(likeService.getLike(id));
-    }
-
-
     @PostMapping("/add")
-    public void insertLike(@RequestBody Like like) {
-        likeService.insertLike(like);
+    public void insertLike(@RequestParam Long songId, @RequestParam Long userId) {
+        likeService.insertLike(songId, userId);
     }
 
 
