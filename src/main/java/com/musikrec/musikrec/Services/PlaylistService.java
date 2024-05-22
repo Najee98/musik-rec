@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PlaylistService {
 
-    PlaylistResponseDto getPlaylist (Long userId, Long playlistId);
+    Playlist getPlaylist (Long userId, Long playlistId);
 
 
     Playlist insertPlaylist(PlaylistRequestDto request);

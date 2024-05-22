@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.musikrec.musikrec.User.AppUser;
 import jakarta.persistence.*;
@@ -44,7 +45,7 @@ public class Song {
             name = "song_playlist",
             joinColumns = @JoinColumn(name = "song_id"),
             inverseJoinColumns = @JoinColumn(name = "playlist_id"))
-    @JsonManagedReference
+    @JsonBackReference
     private List<Playlist> songPlaylists;
 
 }

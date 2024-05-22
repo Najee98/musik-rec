@@ -23,8 +23,8 @@ public class PlaylistServiceImp implements PlaylistService {
     private final AppUserRepository userRepository;
 
     @Override
-    public PlaylistResponseDto getPlaylist(Long userId, Long playlistId) {
-        PlaylistResponseDto response = playlistRepository.getPlaylist(userId, playlistId);
+    public Playlist getPlaylist(Long userId, Long playlistId) {
+        Playlist response = playlistRepository.getPlaylist(userId, playlistId);
 
         if(response == null)
             throw new ResourceNotFoundException("Playlist doesn't exist");

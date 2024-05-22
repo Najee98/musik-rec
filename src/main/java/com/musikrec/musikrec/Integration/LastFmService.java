@@ -39,11 +39,11 @@ public class LastFmService {
                 song.setTitle(lastFmTrack.getName());
                 song.setArtist(lastFmTrack.getArtist().getName());
 
-                // Fetch album details
-                Album album = fetchAlbumDetails(lastFmTrack.getArtist().getName(), lastFmTrack.getName());
-                if (album != null) {
-                    song.setAlbum(album);
-                }
+//                // Fetch album details
+//                Album album = fetchAlbumDetails(lastFmTrack.getArtist().getName(), lastFmTrack.getName());
+//                if (album != null) {
+//                    song.setAlbum(album);
+//                }
 
                 songRepository.save(song);
             }

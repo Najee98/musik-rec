@@ -1,6 +1,8 @@
 package com.musikrec.musikrec.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.musikrec.musikrec.User.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,9 +29,10 @@ public class Playlist {
     private String name;
 
     @ManyToMany(mappedBy = "songPlaylists")
-    @JsonBackReference
+    @JsonManagedReference
     private List<Song> songs = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private AppUser appUser;
