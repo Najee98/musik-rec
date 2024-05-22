@@ -1,5 +1,7 @@
 package com.musikrec.musikrec.Controllers;
 
+import com.musikrec.musikrec.Dto.Responses.LikeResponseDto;
+import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Models.Like;
 import com.musikrec.musikrec.Services.LikeService;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +20,8 @@ public class LikeController {
     private final LikeService likeService;
 
     @GetMapping()
-    public ResponseEntity<List<Like>> getAllLikes() {
-        return ResponseEntity.ok(likeService.getAllLikes());
+    public ResponseEntity<List<LikeResponseDto>> getAllLikeForUser(@RequestParam Long userId) {
+        return ResponseEntity.ok(likeService.getAllLikeForUser(userId));
     }
 
 
