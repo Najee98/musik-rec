@@ -14,13 +14,6 @@ public interface SongService {
     Song getSong(Long id);
 
 
-    Song insertSong(Song song);
-
-
-    Song updateSong(Song song);
-
-
-    Long deleteSong(Long id);
 
 
     void addSongToPlaylist(Long songId, Long playlistId);

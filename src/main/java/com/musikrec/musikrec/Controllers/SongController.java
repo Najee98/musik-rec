@@ -22,25 +22,12 @@ public class SongController {
         return ResponseEntity.ok(songService.getAllSongs());
     }
 
+
     @GetMapping("/get/{id}")
     public ResponseEntity<Song> getSongByName(@PathVariable Long id) {
         return ResponseEntity.ok(songService.getSong(id));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Song> insertSong(@RequestBody Song song) {
-        return new ResponseEntity<>(songService.insertSong(song), HttpStatus.OK);
-    }
-
-    @PutMapping("/update")
-    public ResponseEntity<Song> updateSong(@RequestBody Song song) {
-        return new ResponseEntity<>(songService.updateSong(song), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/delete")
-    public void deleteSong(@RequestParam Long id) {
-        songService.deleteSong(id);
-    }
 
     @PostMapping("/add-to-playlist")
     public ResponseEntity<Object> addSongToPlaylist(
@@ -49,11 +36,13 @@ public class SongController {
         songService.addSongToPlaylist(songId, playlistId);
 
         return new ResponseEntity<>("{ \"message\": \" Song added to playlist successfully  \" }" , HttpStatus.OK);
-
     }
 
+
     @DeleteMapping("/delete-from-playlist")
-    public ResponseEntity<Object> deleteSongFromPlaylist(@RequestParam Long songId, @RequestParam Long playlistId) {
+    public ResponseEntity<Object> deleteSongFromPlaylist(
+            @RequestParam Long songId,
+            @RequestParam Long playlistId) {
         songService.removeSongFromPlaylist(songId,playlistId);
 
         return new ResponseEntity<>("{\"message\": \" Song deleted from the playlist successfully  \" }", HttpStatus.OK);
