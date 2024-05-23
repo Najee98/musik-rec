@@ -65,7 +65,7 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public Long deletePlaylist(Long userId,Long playlistId) {
+    public Long deletePlaylist(Long playlistId) {
         Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
 
         if (playlistOptional.isEmpty())

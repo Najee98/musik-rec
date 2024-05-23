@@ -16,7 +16,7 @@ public interface PlaylistService {
     void updatePlaylist(Playlist playlist);
 
 
-    Long deletePlaylist(Long userId, Long playlistId);
+    Long deletePlaylist(Long playlistId);
 
 
     List<PlaylistResponseDto> getAllPlaylistsForUser(Long userId);
