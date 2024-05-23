@@ -5,8 +5,6 @@ import com.musikrec.musikrec.Models.Album;
 import com.musikrec.musikrec.Repositories.AlbumRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,13 +15,24 @@ public class AlbumServiceImpl implements AlbumService{
 
 
     @Override
-    public List<Album> getAllAlbums(String artist) {
+    public List<Album> getAllAlbumsForArtist(String artist) {
 
-        List<Album> albums = albumRepository.getAllAlbums(artist);
+        List<Album> albums = albumRepository.getAllAlbumsForArtist(artist);
 
                 if(albums.isEmpty())
                     throw new ResourceNotFoundException("No albums found for artist: " + artist);
                 else
                     return albums;
+    }
+
+
+    @Override
+    public Album getAlbumDetails(String title) {
+        Album response = albumRepository.getAlbumDetails(title);
+
+        if (response == null)
+            throw new ResourceNotFoundException("Album doesn't exist");
+
+        return response;
     }
 }

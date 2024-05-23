@@ -4,10 +4,7 @@ import com.musikrec.musikrec.Models.Album;
 import com.musikrec.musikrec.Services.AlbumService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +17,16 @@ public class AlbumController {
     private final AlbumService albumService;
 
     @GetMapping()
-    public ResponseEntity<List<Album>> getAllAlbums(@RequestParam String artist) {
-        return ResponseEntity.ok(albumService.getAllAlbums(artist));
+    public ResponseEntity<List<Album>> getAllAlbumsForArtist(@RequestParam String artist) {
+        return ResponseEntity.ok(albumService.getAllAlbumsForArtist(artist));
     }
+
+
+    @GetMapping("/get/{title}")
+    public ResponseEntity<Album> getAlbumDetails(@PathVariable String title) {
+        return ResponseEntity.ok(albumService.getAlbumDetails(title));
+    }
+
 
 
 
