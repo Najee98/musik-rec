@@ -5,15 +5,14 @@ import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
 import com.musikrec.musikrec.Models.Playlist;
-import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.PlaylistRepository;
 import com.musikrec.musikrec.User.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +31,7 @@ public class PlaylistServiceImp implements PlaylistService {
         return response;
     }
 
+
     @Override
     public Playlist insertPlaylist(PlaylistRequestDto request) {
         Playlist newPlaylist = new Playlist();
@@ -44,6 +44,7 @@ public class PlaylistServiceImp implements PlaylistService {
 
         return playlistRepository.save(newPlaylist);
     }
+
 
     @Override
     public void updatePlaylist(Playlist playlist) {
@@ -62,28 +63,20 @@ public class PlaylistServiceImp implements PlaylistService {
 
     }
 
+
     @Override
-    public Long deletePlaylist(Long id) {
-        Optional<Playlist> playlistOptional = playlistRepository.findById(id);
+    public Long deletePlaylist(Long userId,Long playlistId) {
+        Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
 
         if (playlistOptional.isEmpty())
             throw new ResourceNotFoundException("playlist not found!");
         else {
-            playlistRepository.deleteById(id);
-            return id;
+            playlistRepository.deleteById(playlistId);
+            return playlistId;
         }
     }
 
 
-    @Override
-    public  List<Song> getAllSongsFromPlaylist(Long playlistId){
-
-        Optional<Playlist> playlist = Optional.ofNullable(playlistRepository.findById(playlistId)
-                .orElseThrow(() -> new ResourceNotFoundException("Playlist not found!")));
-
-        return new ArrayList<>(playlist.get().getSongs());
-
-    }
 
     @Override
     public List<PlaylistResponseDto> getAllPlaylistsForUser(Long userId) {

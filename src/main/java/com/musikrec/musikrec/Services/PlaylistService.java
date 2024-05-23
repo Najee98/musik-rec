@@ -3,8 +3,6 @@ package com.musikrec.musikrec.Services;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
 import com.musikrec.musikrec.Models.Playlist;
-import com.musikrec.musikrec.Models.Song;
-
 import java.util.List;
 
 public interface PlaylistService {
@@ -17,9 +15,9 @@ public interface PlaylistService {
 
     void updatePlaylist(Playlist playlist);
 
-    Long deletePlaylist(Long id);
 
-    List<Song> getAllSongsFromPlaylist(Long playlistId);
+    Long deletePlaylist(Long userId, Long playlistId);
+
 
     List<PlaylistResponseDto> getAllPlaylistsForUser(Long userId);
 }
