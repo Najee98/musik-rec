@@ -12,13 +12,13 @@ import java.util.List;
 public interface AlbumRepository extends JpaRepository<Album, Long> {
 
 
-    @Query("select a from Album a where a.artist = :artist")
-    List<Album> getAllAlbumsForArtist (@Param("artist") String artist);
+    @Query("select a from Album a where a.id = :albumId")
+    List<Album> getAllAlbums(@Param("albumId") Long albumId);
 
 
 
 
     @Query("select a from Album a join fetch a.songs " +
-            " where a.title = :title")
-    Album getAlbumDetails(@Param("title") String title);
+            " where a.id = :albumId")
+    Album getAlbum(@Param("albumId") Long albumId);
 }

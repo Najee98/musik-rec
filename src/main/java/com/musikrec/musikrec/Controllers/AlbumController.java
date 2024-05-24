@@ -17,14 +17,14 @@ public class AlbumController {
     private final AlbumService albumService;
 
     @GetMapping()
-    public ResponseEntity<List<Album>> getAllAlbumsForArtist(@RequestParam String artist) {
-        return ResponseEntity.ok(albumService.getAllAlbumsForArtist(artist));
+    public ResponseEntity<List<Album>> getAllAlbums(@RequestParam Long albumId) {
+        return ResponseEntity.ok(albumService.getAllAlbums(albumId));
     }
 
 
-    @GetMapping("/get/{title}")
-    public ResponseEntity<Album> getAlbumDetails(@PathVariable String title) {
-        return ResponseEntity.ok(albumService.getAlbumDetails(title));
+    @GetMapping("/get/{albumId}")
+    public ResponseEntity<Album> getAlbum(@PathVariable Long albumId) {
+        return ResponseEntity.ok(albumService.getAlbum(albumId));
     }
 
 
