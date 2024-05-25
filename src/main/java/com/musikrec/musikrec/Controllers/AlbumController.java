@@ -2,7 +2,6 @@ package com.musikrec.musikrec.Controllers;
 
 import com.musikrec.musikrec.Dto.Responses.AlbumDetailsDto;
 import com.musikrec.musikrec.Dto.Responses.AlbumDto;
-import com.musikrec.musikrec.Models.Album;
 import com.musikrec.musikrec.Services.AlbumService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

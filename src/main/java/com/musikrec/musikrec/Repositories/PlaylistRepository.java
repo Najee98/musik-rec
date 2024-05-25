@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Repositories;
 
+import com.musikrec.musikrec.Dto.Responses.PlaylistDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Models.Playlist;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,5 +22,5 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
 
     @Query("select p from Playlist p join fetch p.songs " +
             "where p.id = :playlistId and p.appUser.id = :userId")
-    Playlist getPlaylist(@Param("userId") Long userId,@Param("playlistId") Long playlistId);
+    PlaylistDetailsResponseDto getPlaylist(@Param("userId") Long userId, @Param("playlistId") Long playlistId);
 }
