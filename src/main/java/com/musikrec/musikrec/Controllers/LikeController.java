@@ -40,7 +40,6 @@ public class LikeController {
     public ResponseEntity<Object> deleteLike(@RequestParam Long id) {
         likeService.deleteLike(id);
 
-        return new ResponseEntity<>("{\"message\": \" Deleted like from the song successfully  \" }", HttpStatus.OK);
-
+        return new ResponseEntity<>("{ \"message\": \" Deleted like successfully  \" }" , HttpStatus.OK);
     }
 }

@@ -7,7 +7,6 @@ import com.musikrec.musikrec.Models.Like;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.LikeRepository;
 import com.musikrec.musikrec.Repositories.SongRepository;
-import com.musikrec.musikrec.User.AppUser;
 import com.musikrec.musikrec.User.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

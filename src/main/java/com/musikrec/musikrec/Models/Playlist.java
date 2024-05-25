@@ -36,6 +36,8 @@ public class Playlist {
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 
+
+
     public void addSong(Song song) {
         this.songs.add(song);
         song.getSongPlaylists().add(this);
