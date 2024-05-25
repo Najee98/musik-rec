@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Services;
 
+import com.musikrec.musikrec.Dto.Responses.PlaylistDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
 import com.musikrec.musikrec.Models.Playlist;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public interface PlaylistService {
 
-    Playlist getPlaylist(Long playlistId);
+    PlaylistDetailsResponseDto getPlaylist(Long playlistId);
 
 
     Playlist insertPlaylist(PlaylistRequestDto request);

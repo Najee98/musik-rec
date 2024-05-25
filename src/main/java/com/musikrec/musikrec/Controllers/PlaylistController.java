@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.Controllers;
 
 
+import com.musikrec.musikrec.Dto.Responses.PlaylistDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
 import com.musikrec.musikrec.Models.Playlist;
@@ -26,7 +27,7 @@ public class PlaylistController {
 
 
     @GetMapping("/get/{playlistId}")
-    public ResponseEntity<Playlist> getPlaylist(@PathVariable Long playlistId) {
+    public ResponseEntity<PlaylistDetailsResponseDto> getPlaylist(@PathVariable Long playlistId) {
         return ResponseEntity.ok(playlistService.getPlaylist(playlistId));
     }
 
