@@ -17,8 +17,8 @@ public class AlbumController {
     private final AlbumService albumService;
 
     @GetMapping()
-    public ResponseEntity<List<Album>> getAllAlbums(@RequestParam Long albumId) {
-        return ResponseEntity.ok(albumService.getAllAlbums(albumId));
+    public ResponseEntity<List<Album>> getAllAlbums() {
+        return ResponseEntity.ok(albumService.getAllAlbums());
     }
 
 

@@ -15,14 +15,11 @@ public class AlbumServiceImpl implements AlbumService{
 
 
     @Override
-    public List<Album> getAllAlbums(Long albumId) {
+    public List<Album> getAllAlbums() {
 
-        List<Album> albums = albumRepository.getAllAlbums(albumId);
+        List<Album> albums = albumRepository.findAll();
 
-                if(albums.isEmpty())
-                    throw new ResourceNotFoundException("No albums found");
-                else
-                    return albums;
+            return albums;
     }
 
 

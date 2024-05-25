@@ -50,9 +50,9 @@ public class SongController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<SongSearchResponse>> searchSongs(@RequestParam String searchQuery){
+    public ResponseEntity<List<SongSearchResponse>> searchSongs(@RequestParam String query){
         return new ResponseEntity<>(
-                songService.searchSong(searchQuery), HttpStatus.OK
+                songService.searchSong(query), HttpStatus.OK
         );
     }
 

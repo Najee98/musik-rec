@@ -17,5 +17,5 @@ public interface SongService {
 
     void removeSongFromPlaylist(Long songId, Long playlistId);
 
-    List<SongSearchResponse> searchSong(String searchQuery);
+    List<SongSearchResponse> searchSong(String query);
 }

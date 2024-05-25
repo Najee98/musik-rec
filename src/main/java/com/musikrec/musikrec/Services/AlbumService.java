@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface AlbumService {
 
-    List<Album> getAllAlbums (Long albumId);
+    List<Album> getAllAlbums ();
 
 
     Album getAlbum(Long albumId);

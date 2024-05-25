@@ -82,9 +82,9 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public List<SongSearchResponse> searchSong(String searchQuery) {
+    public List<SongSearchResponse> searchSong(String query) {
 
-        List<SongSearchResponse> songs = songRepository.searchSongs(searchQuery);
+        List<SongSearchResponse> songs = songRepository.searchSongs(query);
 
         return songs;
     }
