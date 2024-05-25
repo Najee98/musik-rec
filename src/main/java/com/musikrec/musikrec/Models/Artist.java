@@ -5,30 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "albums")
+@Table(name = "artists")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Album {
+public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "artist_id")
     Long id;
 
-    String title;
+    String name;
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    Artist artist;
-
-    String imageUrl;
-
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Song> songs = new ArrayList<>();
-
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Album> artistAlbums;
 
 }

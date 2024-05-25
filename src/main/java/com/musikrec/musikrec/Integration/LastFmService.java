@@ -4,9 +4,11 @@ import com.musikrec.musikrec.Integration.ApiResponse.LastFmResponse;
 import com.musikrec.musikrec.Integration.ApiResponse.LastFmTrackResponse;
 import com.musikrec.musikrec.Integration.ApiResponse.LastFmTrack;
 import com.musikrec.musikrec.Models.Album;
+import com.musikrec.musikrec.Models.Artist;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.AlbumRepository;
 import com.musikrec.musikrec.Repositories.SongRepository;
+import com.musikrec.musikrec.Services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,12 +21,14 @@ public class LastFmService {
     private final SongRepository songRepository;
     private final AlbumRepository albumRepository;
     private final LastFmConfig lastFmConfig;
+    private final ArtistService artistService;
 
     @Autowired
-    public LastFmService(SongRepository songRepository, AlbumRepository albumRepository, LastFmConfig lastFmConfig) {
+    public LastFmService(SongRepository songRepository, AlbumRepository albumRepository, LastFmConfig lastFmConfig, ArtistService artistService) {
         this.songRepository = songRepository;
         this.albumRepository = albumRepository;
         this.lastFmConfig = lastFmConfig;
+        this.artistService = artistService;
     }
 
     public void fetchAndSaveSongs() {
@@ -59,7 +63,7 @@ public class LastFmService {
             LastFmTrack lastFmTrack = response.getTrack();
             Album album = new Album();
             album.setTitle(lastFmTrack.getAlbum().getTitle());
-            album.setArtist(lastFmTrack.getArtist().getName());
+            album.setArtist(artistService.getArtistByName(lastFmTrack.getArtist().getName()));
             album.setImageUrl(lastFmTrack.getAlbum().getImages().get(0).getText());
 
             return albumRepository.save(album);
