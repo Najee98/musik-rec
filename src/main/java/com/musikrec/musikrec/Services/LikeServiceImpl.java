@@ -23,7 +23,7 @@ public class LikeServiceImpl implements LikeService {
 
     private final SongRepository songRepository;
 
-    private final AppUserRepository userRepository;
+    private final UserService userService;
 
     @Override
     public List<LikeResponseDto> getAllLikeForUser(Long userId) {
@@ -47,9 +47,7 @@ public class LikeServiceImpl implements LikeService {
         Like like = new Like();
 
         like.setSong(song);
-        like.setAppUser(
-                userRepository.findById(userId.intValue()).get()
-        );
+        like.setAppUser(userService.getUserById(userId.intValue()));
         like.setTimestamp(new Timestamp(System.currentTimeMillis()));
 
         likeRepository.save(like);

@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.Controllers;
 
 import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
+import com.musikrec.musikrec.Dto.Responses.SongSearchResponse;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Services.SongService;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,13 @@ public class SongController {
         songService.removeSongFromPlaylist(songId,playlistId);
 
         return new ResponseEntity<>("{\"message\": \" Song deleted from the playlist successfully  \" }", HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<SongSearchResponse>> searchSongs(@RequestParam String searchQuery){
+        return new ResponseEntity<>(
+                songService.searchSong(searchQuery), HttpStatus.OK
+        );
     }
 
 }

@@ -19,10 +19,13 @@ import java.util.Optional;
 public class PlaylistServiceImp implements PlaylistService {
 
     private final PlaylistRepository playlistRepository;
-    private final AppUserRepository userRepository;
+    private final UserService userService;
 
     @Override
-    public Playlist getPlaylist(Long userId, Long playlistId) {
+    public Playlist getPlaylist(Long playlistId) {
+
+        Long userId = userService.getUserIdFromLogin();
+
         Playlist response = playlistRepository.getPlaylist(userId, playlistId);
 
         if(response == null)
@@ -38,9 +41,7 @@ public class PlaylistServiceImp implements PlaylistService {
 
         newPlaylist.setName(request.getName());
         newPlaylist.setDescription(request.getDescription());
-        newPlaylist.setAppUser(
-                userRepository.findById(request.getUserId().intValue())
-                        .orElseThrow(() -> new ResourceNotFoundException("User doesn't exist.")));
+        newPlaylist.setAppUser(userService.getUserById(request.getUserId()));
 
         return playlistRepository.save(newPlaylist);
     }

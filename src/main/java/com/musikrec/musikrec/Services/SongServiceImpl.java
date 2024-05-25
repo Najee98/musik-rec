@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.Services;
 
 import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
+import com.musikrec.musikrec.Dto.Responses.SongSearchResponse;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
 import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
@@ -78,5 +79,13 @@ public class SongServiceImpl implements SongService {
 
         // Save Changes
         playlistRepository.save(playlist.get());
+    }
+
+    @Override
+    public List<SongSearchResponse> searchSong(String searchQuery) {
+
+        List<SongSearchResponse> songs = songRepository.searchSongs(searchQuery);
+
+        return songs;
     }
 }
