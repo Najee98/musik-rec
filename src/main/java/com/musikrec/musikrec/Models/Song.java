@@ -1,6 +1,5 @@
 package com.musikrec.musikrec.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.musikrec.musikrec.User.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,7 +33,6 @@ public class Song {
     private Album album;
 
     @OneToOne(mappedBy = "song")
-    //@JsonIgnore
     private Like like;
 
     @ManyToMany(mappedBy = "userSongs")
