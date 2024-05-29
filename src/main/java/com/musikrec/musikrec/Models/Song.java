@@ -31,10 +31,10 @@ public class Song {
 
     @ManyToOne
     @JoinColumn(name = "album_id")
-    @JsonIgnore
     private Album album;
 
     @OneToOne(mappedBy = "song")
+    //@JsonIgnore
     private Like like;
 
     @ManyToMany(mappedBy = "userSongs")
@@ -45,7 +45,6 @@ public class Song {
             name = "song_playlist",
             joinColumns = @JoinColumn(name = "song_id"),
             inverseJoinColumns = @JoinColumn(name = "playlist_id"))
-    //@JsonBackReference
     private List<Playlist> songPlaylists;
 
 }

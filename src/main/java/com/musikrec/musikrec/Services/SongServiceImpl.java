@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Services;
 
+import com.musikrec.musikrec.Dto.Responses.SongDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongSearchResponse;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
@@ -41,11 +42,22 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public Song getSong(Long id) {
-        return songRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Song not found"));
-    }
+    public SongDetailsResponseDto getSong(Long id) {
+        Song song = songRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Song Not Found"));
 
+        SongDetailsResponseDto responseList = new SongDetailsResponseDto();
+
+        responseList.setId(song.getId());
+        responseList.setTitle(song.getTitle());
+        responseList.setArtist(song.getArtist());
+        responseList.setGenre(song.getGenre());
+        responseList.setReleaseYear(song.getReleaseYear());
+        responseList.setAlbumId(song.getAlbum().getId());
+
+        return responseList;
+
+    }
 
     @Override
     public void addSongToPlaylist(Long songId, Long playlistId) {

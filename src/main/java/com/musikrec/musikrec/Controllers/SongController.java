@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Controllers;
 
+import com.musikrec.musikrec.Dto.Responses.SongDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongSearchResponse;
 import com.musikrec.musikrec.Models.Song;
@@ -25,7 +26,7 @@ public class SongController {
 
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Song> getSongByName(@PathVariable Long id) {
+    public ResponseEntity<SongDetailsResponseDto> getSong(@PathVariable Long id) {
         return ResponseEntity.ok(songService.getSong(id));
     }
 

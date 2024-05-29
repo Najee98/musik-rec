@@ -2,6 +2,7 @@ package com.musikrec.musikrec.Services;
 
 
 
+import com.musikrec.musikrec.Dto.Responses.SongDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongSearchResponse;
 import com.musikrec.musikrec.Models.Song;
@@ -11,7 +12,7 @@ public interface SongService {
 
     List<SongResponseDto> getAllSongs();
 
-    Song getSong(Long id);
+    SongDetailsResponseDto getSong(Long id);
 
     void addSongToPlaylist(Long songId, Long playlistId);
 
