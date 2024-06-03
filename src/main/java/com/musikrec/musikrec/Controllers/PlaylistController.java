@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.Controllers;
 
 
+import com.musikrec.musikrec.Dto.Requests.PlaylistUpdateRequest;
 import com.musikrec.musikrec.Dto.Responses.PlaylistDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
@@ -40,8 +41,10 @@ public class PlaylistController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<Object> updatePlaylist(@RequestBody Playlist playlist) {
-        playlistService.updatePlaylist(playlist);
+    public ResponseEntity<Object> updatePlaylist(
+            @RequestParam Long playlistId,
+            @RequestBody PlaylistUpdateRequest request) {
+        playlistService.updatePlaylist(playlistId, request);
         return new ResponseEntity<>("{ \"message\": \" Playlist modified successfully \" }", HttpStatus.OK);
     }
 

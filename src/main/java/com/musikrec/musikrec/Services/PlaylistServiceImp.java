@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.Services;
 
 
+import com.musikrec.musikrec.Dto.Requests.PlaylistUpdateRequest;
 import com.musikrec.musikrec.Dto.Responses.PlaylistDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
@@ -69,14 +70,13 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public void updatePlaylist(Playlist playlist) {
+    public void updatePlaylist(Long playlistId, PlaylistUpdateRequest request) {
 
-        Optional<Playlist> playlistOptional = playlistRepository.findById(playlist.getId());
+        Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
 
         if(playlistOptional.isPresent()){
-            playlistOptional.get().setName(playlist.getName());
-            playlistOptional.get().setDescription(playlist.getDescription());
-
+            playlistOptional.get().setName(request.getName());
+            playlistOptional.get().setDescription(request.getDescription());
 
             playlistRepository.save(playlistOptional.get());
         }else{
