@@ -26,7 +26,7 @@ public class Playlist {
 
     private String name;
 
-    @ManyToMany(mappedBy = "songPlaylists")
+    @ManyToMany(mappedBy = "songPlaylists", cascade = CascadeType.ALL)
     private List<Song> songs = new ArrayList<>();
 
     @JsonIgnore
