@@ -9,5 +9,5 @@ public interface AlbumService {
     List<AlbumDto> getAllAlbums ();
 
 
-    AlbumDetailsDto getAlbum(Long albumId);
+    AlbumDetailsDto getAlbum(Integer albumId);
 }

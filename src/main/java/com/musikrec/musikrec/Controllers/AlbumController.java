@@ -24,7 +24,7 @@ public class AlbumController {
 
 
     @GetMapping("/get/{albumId}")
-    public ResponseEntity<AlbumDetailsDto> getAlbum(@PathVariable Long albumId) {
+    public ResponseEntity<AlbumDetailsDto> getAlbum(@PathVariable Integer albumId) {
         return ResponseEntity.ok(albumService.getAlbum(albumId));
     }
 

@@ -42,7 +42,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public SongDetailsResponseDto getSong(Long id) {
+    public SongDetailsResponseDto getSong(Integer id) {
         Song song = songRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Song Not Found"));
 
@@ -60,7 +60,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public void addSongToPlaylist(Long songId, Long playlistId) {
+    public void addSongToPlaylist(Integer songId, Integer playlistId) {
         // Search For Songs
         Optional<Song> song = Optional.ofNullable(songRepository.findById(songId)
                 .orElseThrow(() -> new ResourceNotFoundException("Song not found!")));
@@ -77,7 +77,7 @@ public class SongServiceImpl implements SongService {
 
     }
     @Override
-    public void removeSongFromPlaylist(Long songId, Long playlistId) {
+    public void removeSongFromPlaylist(Integer songId, Integer playlistId) {
         // Search For Songs
         Optional<Song> song =Optional.ofNullable(songRepository.findById(songId)
                 .orElseThrow(() -> new ResourceNotFoundException("Song not found!")));

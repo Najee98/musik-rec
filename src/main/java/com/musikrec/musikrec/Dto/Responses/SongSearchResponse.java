@@ -2,8 +2,9 @@ package com.musikrec.musikrec.Dto.Responses;
 
 public interface SongSearchResponse {
 
-    Long getSongId();
+    Integer getSongId();
     String getTitle();
     String getArtistName();
     String getAlbumName();
+
 }

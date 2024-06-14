@@ -28,7 +28,7 @@ public class PlaylistServiceImp implements PlaylistService {
     private final UserService userService;
 
     @Override
-    public PlaylistDetailsResponseDto getPlaylist(Long playlistId) {
+    public PlaylistDetailsResponseDto getPlaylist(Integer playlistId) {
 
         Playlist playlist = playlistRepository.findById(playlistId)
                 .orElseThrow(()-> new ResourceNotFoundException("Playlist with id " + playlistId + " not found"));
@@ -70,7 +70,7 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public void updatePlaylist(Long playlistId, PlaylistUpdateRequest request) {
+    public void updatePlaylist(Integer playlistId, PlaylistUpdateRequest request) {
 
         Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
 
@@ -87,7 +87,7 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public Long deletePlaylist(Long playlistId) {
+    public Integer deletePlaylist(Integer playlistId) {
         Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
 
         if (playlistOptional.isEmpty())
@@ -101,7 +101,7 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public List<PlaylistResponseDto> getAllPlaylistsForUser(Long userId) {
+    public List<PlaylistResponseDto> getAllPlaylistsForUser(Integer userId) {
 
         List<PlaylistResponseDto> response = playlistRepository.getAllPlaylistsForUser(userId);
 

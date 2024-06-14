@@ -20,15 +20,15 @@ public class LikeController {
     private final LikeService likeService;
 
     @GetMapping()
-    public ResponseEntity<List<LikeResponseDto>> getAllLikeForUser(@RequestParam Long userId) {
+    public ResponseEntity<List<LikeResponseDto>> getAllLikeForUser(@RequestParam Integer userId) {
         return ResponseEntity.ok(likeService.getAllLikeForUser(userId));
     }
 
 
     @PostMapping("/add")
     public ResponseEntity<Object> insertLike(
-            @RequestParam Long songId,
-            @RequestParam Long userId){
+            @RequestParam Integer songId,
+            @RequestParam Integer userId){
         likeService.insertLike(songId, userId);
 
         return new ResponseEntity<>("{ \"message\": \" Added like to song successfully  \" }" , HttpStatus.OK);
@@ -37,7 +37,7 @@ public class LikeController {
 
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Object> deleteLike(@RequestParam Long id) {
+    public ResponseEntity<Object> deleteLike(@RequestParam Integer id) {
         likeService.deleteLike(id);
 
         return new ResponseEntity<>("{ \"message\": \" Deleted like successfully  \" }" , HttpStatus.OK);

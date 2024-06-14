@@ -22,13 +22,13 @@ public class PlaylistController {
     private final PlaylistService playlistService;
 
     @GetMapping()
-    public ResponseEntity<List<PlaylistResponseDto>> getAllPlaylistForUser(@RequestParam Long userId) {
+    public ResponseEntity<List<PlaylistResponseDto>> getAllPlaylistForUser(@RequestParam Integer userId) {
         return ResponseEntity.ok(playlistService.getAllPlaylistsForUser(userId));
     }
 
 
     @GetMapping("/get/{playlistId}")
-    public ResponseEntity<PlaylistDetailsResponseDto> getPlaylist(@PathVariable Long playlistId) {
+    public ResponseEntity<PlaylistDetailsResponseDto> getPlaylist(@PathVariable Integer playlistId) {
         return ResponseEntity.ok(playlistService.getPlaylist(playlistId));
     }
 
@@ -42,7 +42,7 @@ public class PlaylistController {
 
     @PutMapping("/update")
     public ResponseEntity<Object> updatePlaylist(
-            @RequestParam Long playlistId,
+            @RequestParam Integer playlistId,
             @RequestBody PlaylistUpdateRequest request) {
         playlistService.updatePlaylist(playlistId, request);
         return new ResponseEntity<>("{ \"message\": \" Playlist modified successfully \" }", HttpStatus.OK);
@@ -50,7 +50,7 @@ public class PlaylistController {
 
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Object> deletePlaylist(@RequestParam Long playlistId) {
+    public ResponseEntity<Object> deletePlaylist(@RequestParam Integer playlistId) {
         playlistService.deletePlaylist(playlistId);
         return new ResponseEntity<>("{ \"message\": \" Playlist deleted successfully \" }", HttpStatus.OK);
     }

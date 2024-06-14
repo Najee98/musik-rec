@@ -12,11 +12,11 @@ public interface SongService {
 
     List<SongResponseDto> getAllSongs();
 
-    SongDetailsResponseDto getSong(Long id);
+    SongDetailsResponseDto getSong(Integer id);
 
-    void addSongToPlaylist(Long songId, Long playlistId);
+    void addSongToPlaylist(Integer songId, Integer playlistId);
 
-    void removeSongFromPlaylist(Long songId, Long playlistId);
+    void removeSongFromPlaylist(Integer songId, Integer playlistId);
 
     List<SongSearchResponse> searchSong(String query);
 }

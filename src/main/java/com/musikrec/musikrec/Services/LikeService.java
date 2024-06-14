@@ -7,14 +7,14 @@ import java.util.List;
 public interface LikeService {
 
 
-    List<LikeResponseDto> getAllLikeForUser(Long userId);
+    List<LikeResponseDto> getAllLikeForUser(Integer userId);
 
 
 
-    void insertLike(Long songId,Long userId);
+    void insertLike(Integer songId,Integer userId);
 
 
-    Long deleteLike(Long id);
+    Integer deleteLike(Integer id);
 
 
 

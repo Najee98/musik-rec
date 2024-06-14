@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AlbumDetailsDto implements Serializable {
 
-    private Long id;
+    private Integer id;
     private String name;
     private String imageUrl;
 

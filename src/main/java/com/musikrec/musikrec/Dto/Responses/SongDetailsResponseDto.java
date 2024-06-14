@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 public class SongDetailsResponseDto implements Serializable {
 
-    private Long id;
+    private Integer id;
 
     private String title;
 
@@ -22,6 +22,6 @@ public class SongDetailsResponseDto implements Serializable {
 
     private String releaseYear;
 
-    private Long albumId;
+    private Integer albumId;
 
 }

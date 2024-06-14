@@ -20,7 +20,7 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "playlist_id")
-    private Long id;
+    private Integer id;
 
     private String description;
 

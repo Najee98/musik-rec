@@ -26,15 +26,15 @@ public class SongController {
 
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<SongDetailsResponseDto> getSong(@PathVariable Long id) {
+    public ResponseEntity<SongDetailsResponseDto> getSong(@PathVariable Integer id) {
         return ResponseEntity.ok(songService.getSong(id));
     }
 
 
     @PostMapping("/add-to-playlist")
     public ResponseEntity<Object> addSongToPlaylist(
-            @RequestParam Long songId,
-            @RequestParam Long playlistId){
+            @RequestParam Integer songId,
+            @RequestParam Integer playlistId){
         songService.addSongToPlaylist(songId, playlistId);
 
         return new ResponseEntity<>("{ \"message\": \" Song added to playlist successfully  \" }" , HttpStatus.OK);
@@ -43,8 +43,8 @@ public class SongController {
 
     @DeleteMapping("/delete-from-playlist")
     public ResponseEntity<Object> deleteSongFromPlaylist(
-            @RequestParam Long songId,
-            @RequestParam Long playlistId) {
+            @RequestParam Integer songId,
+            @RequestParam Integer playlistId) {
         songService.removeSongFromPlaylist(songId,playlistId);
 
         return new ResponseEntity<>("{\"message\": \" Song deleted from the playlist successfully  \" }", HttpStatus.OK);

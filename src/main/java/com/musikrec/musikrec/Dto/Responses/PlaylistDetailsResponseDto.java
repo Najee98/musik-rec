@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PlaylistDetailsResponseDto implements Serializable {
 
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
 

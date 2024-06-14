@@ -9,17 +9,17 @@ import java.util.List;
 
 public interface PlaylistService {
 
-    PlaylistDetailsResponseDto getPlaylist(Long playlistId);
+    PlaylistDetailsResponseDto getPlaylist(Integer playlistId);
 
 
     Playlist insertPlaylist(PlaylistRequestDto request);
 
 
-    void updatePlaylist(Long playlistId, PlaylistUpdateRequest request);
+    void updatePlaylist(Integer playlistId, PlaylistUpdateRequest request);
 
 
-    Long deletePlaylist(Long playlistId);
+    Integer deletePlaylist(Integer playlistId);
 
 
-    List<PlaylistResponseDto> getAllPlaylistsForUser(Long userId);
+    List<PlaylistResponseDto> getAllPlaylistsForUser(Integer userId);
 }

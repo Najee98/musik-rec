@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class SongResponseDto implements Serializable {
 
-    private Long id;
+    private Integer id;
     private String name;
     private String artist;
     private String album;

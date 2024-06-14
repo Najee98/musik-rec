@@ -44,9 +44,19 @@ public class AuthenticationService {
 
             var jwtToken = "Bearer " + jwtService.generateToken(user);
 
-            return AuthenticationResponse.builder()
-                    .token(jwtToken)
-                    .build();
+            AuthenticationResponse response = new AuthenticationResponse(
+                    user.getId(),
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getEmail(),
+                    jwtToken,
+                    true
+            );
+
+            return response;
+//            return AuthenticationResponse.builder()
+//                    .token(jwtToken)
+//                    .build();
         }
     }
 
@@ -64,8 +74,19 @@ public class AuthenticationService {
 
         var jwtToken = "Bearer " + jwtService.generateToken(user);
 
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+        AuthenticationResponse response = new AuthenticationResponse(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                jwtToken,
+                true
+        );
+
+        return response;
+
+//        return AuthenticationResponse.builder()
+//                .token(jwtToken)
+//                .build();
     }
 }

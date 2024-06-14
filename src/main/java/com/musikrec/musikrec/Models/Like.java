@@ -17,7 +17,7 @@ public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "like_id")
-    private Long id;
+    private Integer id;
 
     private Timestamp timestamp;
 

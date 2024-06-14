@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class AlbumDto implements Serializable {
 
-    private Long id;
+    private Integer id;
     private String name;
     private String imageUrl;
 

@@ -15,12 +15,12 @@ public class UserServiceImpl implements UserService{
     private final AppUserRepository userRepository;
 
     @Override
-    public Long getUserIdFromLogin() {
+    public Integer getUserIdFromLogin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         AppUser user = (AppUser) authentication.getPrincipal();
 
-        return user.getId().longValue();
+        return user.getId();
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class LikeResponseDto implements Serializable {
 
-    private Long id;
+    private Integer id;
 
     private String title;
 

@@ -39,7 +39,7 @@ public class AlbumServiceImpl implements AlbumService{
 
 
     @Override
-    public AlbumDetailsDto getAlbum(Long albumId) {
+    public AlbumDetailsDto getAlbum(Integer albumId) {
 
         Album album = albumRepository.findById(albumId)
                 .orElseThrow(() -> new ResourceNotFoundException("Album with id: " + albumId + " not found."));

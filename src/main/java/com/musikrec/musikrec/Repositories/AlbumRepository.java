@@ -11,16 +11,16 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AlbumRepository extends JpaRepository<Album, Long> {
+public interface AlbumRepository extends JpaRepository<Album, Integer> {
 
 
     @Query("select a from Album a where a.id = :albumId")
-    List<AlbumDto> getAllAlbums(@Param("albumId") Long albumId);
+    List<AlbumDto> getAllAlbums(@Param("albumId") Integer albumId);
 
 
 
 
     @Query("select a from Album a join fetch a.songs " +
             " where a.id = :albumId")
-    AlbumDetailsDto getAlbum(@Param("albumId") Long albumId);
+    AlbumDetailsDto getAlbum(@Param("albumId") Integer albumId);
 }

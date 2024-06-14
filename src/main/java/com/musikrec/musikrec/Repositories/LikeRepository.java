@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Repository
-public interface LikeRepository extends JpaRepository<Like,Long> {
+public interface LikeRepository extends JpaRepository<Like,Integer> {
 
 
     @Query("select new com.musikrec.musikrec.Dto.Responses.LikeResponseDto(" +
@@ -23,5 +23,5 @@ public interface LikeRepository extends JpaRepository<Like,Long> {
             "join l.song s " +
             "join l.appUser u " +
             "where u.id = :userId")
-    List<LikeResponseDto> getAllLikeForUser(@Param("userId") Long userId);
+    List<LikeResponseDto> getAllLikeForUser(@Param("userId") Integer userId);
 }
