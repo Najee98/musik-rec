@@ -20,16 +20,15 @@ public class LikeController {
     private final LikeService likeService;
 
     @GetMapping()
-    public ResponseEntity<List<LikeResponseDto>> getAllLikeForUser(@RequestParam Integer userId) {
-        return ResponseEntity.ok(likeService.getAllLikeForUser(userId));
+    public ResponseEntity<List<LikeResponseDto>> getAllLikeForUser() {
+        return ResponseEntity.ok(likeService.getAllLikeForUser());
     }
 
 
     @PostMapping("/add")
     public ResponseEntity<Object> insertLike(
-            @RequestParam Integer songId,
-            @RequestParam Integer userId){
-        likeService.insertLike(songId, userId);
+            @RequestParam Integer songId){
+        likeService.insertLike(songId);
 
         return new ResponseEntity<>("{ \"message\": \" Added like to song successfully  \" }" , HttpStatus.OK);
 

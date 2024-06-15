@@ -22,8 +22,8 @@ public class PlaylistController {
     private final PlaylistService playlistService;
 
     @GetMapping()
-    public ResponseEntity<List<PlaylistResponseDto>> getAllPlaylistForUser(@RequestParam Integer userId) {
-        return ResponseEntity.ok(playlistService.getAllPlaylistsForUser(userId));
+    public ResponseEntity<List<PlaylistResponseDto>> getAllPlaylistForUser() {
+        return ResponseEntity.ok(playlistService.getAllPlaylistsForUser());
     }
 
 

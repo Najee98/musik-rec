@@ -21,5 +21,5 @@ public interface PlaylistService {
     Integer deletePlaylist(Integer playlistId);
 
 
-    List<PlaylistResponseDto> getAllPlaylistsForUser(Integer userId);
+    List<PlaylistResponseDto> getAllPlaylistsForUser();
 }

@@ -4,7 +4,7 @@ import com.musikrec.musikrec.User.AppUser;
 
 public interface UserService {
 
-    Integer getUserIdFromLogin();
+    AppUser getUserFromLogin();
 
     AppUser getUserById(Integer userId);
 
