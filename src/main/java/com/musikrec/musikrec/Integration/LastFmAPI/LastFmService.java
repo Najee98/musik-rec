@@ -1,10 +1,9 @@
-package com.musikrec.musikrec.Integration;
+package com.musikrec.musikrec.Integration.LastFmAPI;
 
-import com.musikrec.musikrec.Integration.ApiResponse.LastFmResponse;
-import com.musikrec.musikrec.Integration.ApiResponse.LastFmTrackResponse;
-import com.musikrec.musikrec.Integration.ApiResponse.LastFmTrack;
+import com.musikrec.musikrec.Integration.LastFmAPI.ApiResponse.LastFmResponse;
+import com.musikrec.musikrec.Integration.LastFmAPI.ApiResponse.LastFmTrackResponse;
+import com.musikrec.musikrec.Integration.LastFmAPI.ApiResponse.LastFmTrack;
 import com.musikrec.musikrec.Models.Album;
-import com.musikrec.musikrec.Models.Artist;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.AlbumRepository;
 import com.musikrec.musikrec.Repositories.SongRepository;
