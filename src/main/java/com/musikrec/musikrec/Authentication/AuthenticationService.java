@@ -6,6 +6,7 @@ import com.musikrec.musikrec.Authentication.Dto.RegisterRequest;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.AuthenticationException;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.DuplicatedResourceException;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
+import com.musikrec.musikrec.Integration.SpotifyAPI.SpotifyService;
 import com.musikrec.musikrec.Security.JWT.JwtService;
 import com.musikrec.musikrec.User.AppUser;
 import com.musikrec.musikrec.User.AppUserRepository;
@@ -26,6 +27,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final SpotifyService spotifyService;
 
     public AuthenticationResponse register(RegisterRequest request) throws AuthenticationException {
         Optional<AppUser> existingUser = userRepository.findByEmail(request.getEmail());
@@ -50,13 +52,11 @@ public class AuthenticationService {
                     user.getLastName(),
                     user.getEmail(),
                     jwtToken,
-                    true
+                    true,
+                    spotifyService.getAccessToken()
             );
 
             return response;
-//            return AuthenticationResponse.builder()
-//                    .token(jwtToken)
-//                    .build();
         }
     }
 
@@ -80,13 +80,10 @@ public class AuthenticationService {
                 user.getLastName(),
                 user.getEmail(),
                 jwtToken,
-                true
+                true,
+                spotifyService.getAccessToken()
         );
 
         return response;
-
-//        return AuthenticationResponse.builder()
-//                .token(jwtToken)
-//                .build();
     }
 }

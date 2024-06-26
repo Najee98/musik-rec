@@ -22,7 +22,7 @@ public class SpotifyService {
     }
 
     // Method to get the access token
-    private String getAccessToken() {
+    public String getAccessToken() {
         HttpHeaders headers = new HttpHeaders();
         headers.setBasicAuth(spotifyConfig.getClientId(), spotifyConfig.getClientSecret());
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
