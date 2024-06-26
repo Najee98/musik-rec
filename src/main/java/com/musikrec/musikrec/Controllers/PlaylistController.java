@@ -5,7 +5,6 @@ import com.musikrec.musikrec.Dto.Requests.PlaylistUpdateRequest;
 import com.musikrec.musikrec.Dto.Responses.PlaylistDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
-import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Services.PlaylistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

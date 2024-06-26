@@ -10,7 +10,6 @@ import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundExcepti
 import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.PlaylistRepository;
-import com.musikrec.musikrec.User.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -12,6 +12,6 @@ public class MusikRecApplication {
 
     public static void main(String[] args) {
 		SpringApplication.run(MusikRecApplication.class, args);
-	}
 
+	}
 }
