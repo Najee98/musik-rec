@@ -1,4 +1,4 @@
-package com.musikrec.musikrec.Integration;
+package com.musikrec.musikrec.Integration.LastFmAPI;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

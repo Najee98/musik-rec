@@ -7,11 +7,11 @@ import java.util.List;
 public interface LikeService {
 
 
-    List<LikeResponseDto> getAllLikeForUser(Integer userId);
+    List<LikeResponseDto> getAllLikeForUser();
 
 
 
-    void insertLike(Integer songId,Integer userId);
+    void insertLike(Integer songId);
 
 
     Integer deleteLike(Integer id);

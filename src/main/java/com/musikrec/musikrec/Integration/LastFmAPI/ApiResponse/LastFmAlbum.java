@@ -1,4 +1,4 @@
-package com.musikrec.musikrec.Integration.ApiResponse;
+package com.musikrec.musikrec.Integration.LastFmAPI.ApiResponse;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

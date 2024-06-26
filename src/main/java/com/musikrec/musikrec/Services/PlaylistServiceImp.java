@@ -58,11 +58,14 @@ public class PlaylistServiceImp implements PlaylistService {
 
     @Override
     public Playlist insertPlaylist(PlaylistRequestDto request) {
+
+        Integer userId = userService.getUserFromLogin().getId();
+
         Playlist newPlaylist = new Playlist();
 
         newPlaylist.setName(request.getName());
         newPlaylist.setDescription(request.getDescription());
-        newPlaylist.setAppUser(userService.getUserById(request.getUserId()));
+        newPlaylist.setAppUser(userService.getUserById(userId));
 
         return playlistRepository.save(newPlaylist);
     }
@@ -100,7 +103,9 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public List<PlaylistResponseDto> getAllPlaylistsForUser(Integer userId) {
+    public List<PlaylistResponseDto> getAllPlaylistsForUser() {
+
+        Integer userId = userService.getUserFromLogin().getId();
 
         List<PlaylistResponseDto> response = playlistRepository.getAllPlaylistsForUser(userId);
 

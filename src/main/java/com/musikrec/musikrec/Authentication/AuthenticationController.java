@@ -33,7 +33,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/user-id")
-    public ResponseEntity<Integer> getUserIdFromLogin(){
-        return new ResponseEntity<>(userService.getUserIdFromLogin(), HttpStatus.ACCEPTED);
+    public ResponseEntity<Object> getUserIdFromLogin(){
+        return new ResponseEntity<>(userService.getUserFromLogin(), HttpStatus.ACCEPTED);
     }
 }

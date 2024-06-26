@@ -26,7 +26,9 @@ public class LikeServiceImpl implements LikeService {
     private final UserService userService;
 
     @Override
-    public List<LikeResponseDto> getAllLikeForUser(Integer userId) {
+    public List<LikeResponseDto> getAllLikeForUser() {
+
+        Integer userId = userService.getUserFromLogin().getId();
 
         List<LikeResponseDto> response = likeRepository.getAllLikeForUser(userId);
 
@@ -38,7 +40,9 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public void insertLike(Integer songId,Integer userId) {
+    public void insertLike(Integer songId) {
+
+        Integer userId = userService.getUserFromLogin().getId();
 
         Song song = songRepository.findById(songId)
                 .orElseThrow(()->new ResourceNotFoundException("song not found"));
