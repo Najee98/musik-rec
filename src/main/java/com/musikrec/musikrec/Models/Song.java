@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,11 +23,13 @@ public class Song {
 
     private String title;
 
-    private String artist;
-
     private String genre;
 
     private String releaseYear;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 
     @ManyToOne
     @JoinColumn(name = "album_id")
@@ -36,14 +39,14 @@ public class Song {
     private Like like;
 
     @ManyToMany(mappedBy = "userSongs")
-    private List<AppUser> users ;
+    private List<AppUser> users = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
             name = "song_playlist",
             joinColumns = @JoinColumn(name = "song_id"),
             inverseJoinColumns = @JoinColumn(name = "playlist_id"))
-    private List<Playlist> songPlaylists;
+    private List<Playlist> songPlaylists = new ArrayList<>();
 
 }
 

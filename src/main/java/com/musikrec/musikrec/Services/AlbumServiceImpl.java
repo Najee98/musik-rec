@@ -57,7 +57,7 @@ public class AlbumServiceImpl implements AlbumService{
             dto.setId(s.getId());
             dto.setName(s.getTitle());
             dto.setAlbum(album.getTitle());
-            dto.setArtist(s.getArtist());
+            dto.setArtist(s.getArtist().getName());
 
             songList.add(dto);
         }

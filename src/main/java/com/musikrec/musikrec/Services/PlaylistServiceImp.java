@@ -46,7 +46,7 @@ public class PlaylistServiceImp implements PlaylistService {
             dto.setId(s.getId());
             dto.setName(s.getTitle());
             dto.setAlbum(s.getTitle());
-            dto.setArtist(s.getArtist());
+            dto.setArtist(s.getArtist().getName());
 
             songList.add(dto);
         }
