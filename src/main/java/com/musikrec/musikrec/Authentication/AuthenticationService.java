@@ -53,7 +53,7 @@ public class AuthenticationService {
                     user.getEmail(),
                     jwtToken,
                     true,
-                    spotifyService.getAccessToken()
+                    "Bearer " + spotifyService.getAccessToken()
             );
 
             return response;
@@ -81,7 +81,7 @@ public class AuthenticationService {
                 user.getEmail(),
                 jwtToken,
                 true,
-                spotifyService.getAccessToken()
+                "Bearer " +spotifyService.getAccessToken()
         );
 
         return response;

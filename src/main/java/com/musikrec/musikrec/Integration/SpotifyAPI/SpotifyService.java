@@ -1,5 +1,6 @@
 package com.musikrec.musikrec.Integration.SpotifyAPI;
 
+import com.musikrec.musikrec.Integration.SpotifyAPI.ApiResponse.SpotifySearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
@@ -37,8 +38,7 @@ public class SpotifyService {
         return (String) response.getBody().get("access_token");
     }
 
-    // Method to search for tracks
-    public String searchTracks(String query) {
+    public SpotifySearchResponse searchTracks(String query) {
         String accessToken = getAccessToken();
 
         HttpHeaders headers = new HttpHeaders();
@@ -48,7 +48,7 @@ public class SpotifyService {
 
         String searchUrl = "https://api.spotify.com/v1/search?q=" + query + "&type=track";
 
-        ResponseEntity<String> response = restTemplate.exchange(searchUrl, HttpMethod.GET, entity, String.class);
+        ResponseEntity<SpotifySearchResponse> response = restTemplate.exchange(searchUrl, HttpMethod.GET, entity, SpotifySearchResponse.class);
 
         return response.getBody();
     }
