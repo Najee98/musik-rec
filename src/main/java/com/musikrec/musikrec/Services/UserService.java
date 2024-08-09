@@ -8,4 +8,5 @@ public interface UserService {
 
     AppUser getUserById(Integer userId);
 
+    void saveUser(AppUser user);
 }

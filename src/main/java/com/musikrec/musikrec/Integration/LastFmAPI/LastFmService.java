@@ -1,9 +1,11 @@
 package com.musikrec.musikrec.Integration.LastFmAPI;
 
+import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
 import com.musikrec.musikrec.Integration.LastFmAPI.ApiResponse.LastFmResponse;
 import com.musikrec.musikrec.Integration.LastFmAPI.ApiResponse.LastFmTrackResponse;
 import com.musikrec.musikrec.Integration.LastFmAPI.ApiResponse.LastFmTrack;
 import com.musikrec.musikrec.Models.Album;
+import com.musikrec.musikrec.Models.Artist;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.AlbumRepository;
 import com.musikrec.musikrec.Repositories.SongRepository;
@@ -40,7 +42,17 @@ public class LastFmService {
             for (LastFmTrack lastFmTrack : lastFmTracks) {
                 Song song = new Song();
                 song.setTitle(lastFmTrack.getName());
-                song.setArtist(lastFmTrack.getArtist().getName());
+                try{
+                    Artist artist = artistService.getArtistByName(lastFmTrack.getArtist().getName());
+                    song.setArtist(artist);
+                }catch (ResourceNotFoundException e){
+                    e.getMessage();
+                }finally {
+                    Artist artist = new Artist();
+                    artist.setName("unknown artist");
+                    song.setArtist(artist);
+                }
+
 
 //                // Fetch album details
 //                Album album = fetchAlbumDetails(lastFmTrack.getArtist().getName(), lastFmTrack.getName());

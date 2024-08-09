@@ -57,4 +57,18 @@ public class SongController {
         );
     }
 
+    @GetMapping("/history")
+    public ResponseEntity<List<SongResponseDto>> getSongHistory(){
+        return ResponseEntity.ok(songService.getUserHistory());
+    }
+
+    @GetMapping("/history/new")
+    public ResponseEntity<Object> insertHistory(@RequestParam Integer songId){
+
+        songService.insertHistory(songId);
+        String response = String.format("{\"message\": \" Song with id %s added to history.  \" }", songId);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

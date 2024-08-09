@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -75,26 +76,22 @@ public class AppUser implements UserDetails {
     }
 
 
-
-
     //The Relationship Between users And songs://
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
                 name = "history",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "song_id"))
-    private List<Song> userSongs;
+    private List<Song> userSongs = new ArrayList<>();
 
 
     //The Relationship Between users And likes://
     @OneToMany(mappedBy = "appUser")
-    private List<Like>likes;
+    private List<Like> likes = new ArrayList<>();
 
 
     //The Relationship Between users And playlist://
     @OneToMany(mappedBy = "appUser")
-    private List<Playlist>playlists;
-
-
+    private List<Playlist> playlists = new ArrayList<>();
 
 }
