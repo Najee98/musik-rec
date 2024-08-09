@@ -10,11 +10,4 @@ public class SpotifySearchResponse {
 
     private Tracks tracks;
 
-//    Integer id;
-//    String name;
-//    String artist;
-//    String album;
-//    String image;
-//    String url;
-
 }

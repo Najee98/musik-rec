@@ -38,6 +38,10 @@ public class Song {
     @OneToOne(mappedBy = "song")
     private Like like;
 
+    private String imageUrl;
+
+    private String previewUrl;
+
     @ManyToMany(mappedBy = "userSongs")
     private List<AppUser> users = new ArrayList<>();
 

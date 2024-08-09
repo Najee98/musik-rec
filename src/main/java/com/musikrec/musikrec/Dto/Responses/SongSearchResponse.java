@@ -1,10 +1,15 @@
 package com.musikrec.musikrec.Dto.Responses;
 
-public interface SongSearchResponse {
+import lombok.Data;
 
-    Integer getSongId();
-    String getTitle();
-    String getArtistName();
-    String getAlbumName();
+@Data
+public class SongSearchResponse {
+
+    private Integer id;
+    private String title;
+    private String artist;
+    private String album;
+    private String imageUrl;
+    private String previewUrl;
 
 }

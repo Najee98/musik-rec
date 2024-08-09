@@ -15,20 +15,24 @@ import java.util.Optional;
 @Repository
 public interface SongRepository extends JpaRepository<Song, Integer> {
 
-    @Query("SELECT s FROM Song s LEFT JOIN FETCH s.users WHERE s.id = :songId")
+    @Query("SELECT DISTINCT s FROM Song s LEFT JOIN FETCH s.users WHERE s.id = :songId")
     Optional<Song> findByIdWithUsers(@Param("songId") Integer songId);
 
     @Query("SELECT s FROM Song s JOIN s.users u WHERE u.id = :userId")
     List<Song> findSongHistoryByUserId(@Param("userId") Integer userId);
 
-    @Query("select " +
-            "s.id as songId, " +
+    @Query("select DISTINCT " +
+            "s.id as id, " +
             "s.title as title, " +
-            "s.artist as artistName, " +
-            "s.album.title as albumName " +
+            "s.artist as artist, " +
+            "s.album.title as album," +
+            "s.imageUrl as imageUrl, " +
+            "s.previewUrl as previewUrl " +
             "from Song s " +
             "where lower(s.title) like lower(concat('%', :query, '%'))")
     List<SongSearchResponse>searchSongs(@Param("query") String query);
 
 
+    @Query("SELECT DISTINCT s FROM Song s")
+    List<Song> findAllSongs();
 }

@@ -82,7 +82,7 @@ public class AuthenticationService {
                 user.getEmail(),
                 jwtToken,
                 true,
-                "Bearer " +spotifyService.getAccessToken()
+                "Bearer " + spotifyService.getAccessToken()
         );
 
         return response;

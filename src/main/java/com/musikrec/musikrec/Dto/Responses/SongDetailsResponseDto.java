@@ -22,6 +22,10 @@ public class SongDetailsResponseDto implements Serializable {
 
     private String releaseYear;
 
+    private String imageUrl;
+
+    private String previewUrl;
+
     private Integer albumId;
 
 }
