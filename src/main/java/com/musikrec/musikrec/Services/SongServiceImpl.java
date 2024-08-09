@@ -4,6 +4,8 @@ import com.musikrec.musikrec.Dto.Responses.SongDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Dto.Responses.SongSearchResponse;
 import com.musikrec.musikrec.Exceptions.CustomExceptions.ResourceNotFoundException;
+import com.musikrec.musikrec.Integration.SpotifyAPI.ApiResponse.SpotifySearchResponse;
+import com.musikrec.musikrec.Integration.SpotifyAPI.SpotifyService;
 import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Models.Song;
 import com.musikrec.musikrec.Repositories.PlaylistRepository;
@@ -28,9 +30,11 @@ public class SongServiceImpl implements SongService {
 
     private final UserService userService;
 
+    private final SpotifyService spotifyService;
+
     @Override
     public List<SongResponseDto> getAllSongs() {
-        List<Song> songs = songRepository.findAll();
+        List<Song> songs = songRepository.findAllSongs();
 
         List<SongResponseDto> responseList = new ArrayList<>();
 
@@ -39,6 +43,7 @@ public class SongServiceImpl implements SongService {
             response.setId(s.getId());
             response.setName(s.getTitle());
             response.setArtist(s.getArtist().getName());
+            response.setImageUrl(s.getImageUrl());
 
             responseList.add(response);
         }
@@ -59,6 +64,8 @@ public class SongServiceImpl implements SongService {
         response.setGenre(song.getGenre());
         response.setReleaseYear(song.getReleaseYear());
         response.setAlbumId(song.getAlbum().getId());
+        response.setPreviewUrl(song.getPreviewUrl());
+        response.setImageUrl(song.getImageUrl());
 
         return response;
 
@@ -101,9 +108,25 @@ public class SongServiceImpl implements SongService {
     @Override
     public List<SongSearchResponse> searchSong(String query) {
 
-        List<SongSearchResponse> songs = songRepository.searchSongs(query);
+        List<SongSearchResponse> result = songRepository.searchSongs(query);
+        SpotifySearchResponse spotifyResults = spotifyService.searchTracks(query);
 
-        return songs;
+//        for(SpotifySearchResponse s : spotifyResults){
+//
+//            SongSearchResponse song = new SongSearchResponse();
+//
+//            int i = 0;
+//
+//            song.setTitle(s.getTracks().getItems().get(i).getName());
+//            song.setArtist(s.getTracks().getItems().get(i).getArtists().get(i).getName());
+//            song.setAlbum(s.getTracks().getItems().get(i).getAlbum().getName());
+//            song.setImageUrl(s.getTracks().getItems().get(i).getAlbum().getImages().get(i).getUrl());
+//            song.setPreviewUrl(s.getTracks().getItems().get(i).getPreview_url());
+//
+//        }
+
+        return result;
+
     }
 
     @Override
@@ -119,6 +142,8 @@ public class SongServiceImpl implements SongService {
             dto.setName(s.getTitle());
             dto.setAlbum(s.getArtist().getName());
             dto.setAlbum(s.getAlbum().getTitle());
+            dto.setPreviewUrl(s.getPreviewUrl());
+            dto.setImageUrl(s.getImageUrl());
 
             response.add(dto);
         }

@@ -12,8 +12,15 @@ import java.io.Serializable;
 public class SongResponseDto implements Serializable {
 
     private Integer id;
+
     private String name;
+
     private String artist;
+
     private String album;
+
+    private String imageUrl;
+
+    private String previewUrl;
 
 }
