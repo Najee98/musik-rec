@@ -26,7 +26,7 @@ public class MusicRecommendationService {
 
     public List<SongResponseDto> getRecommendationsForUser(int userId) {
         // The URL of the Django API endpoint
-        String djangoApiUrl = "http://localhost:/songs";
+        String djangoApiUrl = "http://localhost:8000/songs";
 
         // Create the request body with the user ID
         Map<String, Integer> requestBody = new HashMap<>();
