@@ -1,6 +1,7 @@
 package com.musikrec.musikrec.Controllers;
 
 import com.musikrec.musikrec.Dto.Responses.LikeResponseDto;
+import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 import com.musikrec.musikrec.Services.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class LikeController {
     private final LikeService likeService;
 
     @GetMapping()
-    public ResponseEntity<List<LikeResponseDto>> getAllLikeForUser() {
+    public ResponseEntity<List<SongResponseDto>> getAllLikeForUser() {
         return ResponseEntity.ok(likeService.getAllLikeForUser());
     }
 
@@ -37,7 +38,7 @@ public class LikeController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<Object> deleteLike(@RequestParam Integer id) {
-        likeService.deleteLike(id);
+        likeService.DeleteLike(id);
 
         return new ResponseEntity<>("{ \"message\": \" Deleted like successfully  \" }" , HttpStatus.OK);
     }
