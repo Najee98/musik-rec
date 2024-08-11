@@ -17,7 +17,7 @@ public interface LikeRepository extends JpaRepository<Like,Integer> {
     @Query("select new com.musikrec.musikrec.Dto.Responses.LikeResponseDto(" +
             "s.id, " +
             "s.title, " +
-            "s.artist," +
+            "s.artist.name," +
             "l.timestamp) " +
             "from Like l " +
             "join l.song s " +
