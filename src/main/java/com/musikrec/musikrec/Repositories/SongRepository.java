@@ -32,7 +32,6 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
             "where lower(s.title) like lower(concat('%', :query, '%'))")
     List<SongSearchResponse>searchSongs(@Param("query") String query);
 
-
-    @Query("SELECT DISTINCT s FROM Song s")
+    @Query("SELECT DISTINCT s FROM Song s WHERE s.previewUrl IS NOT NULL ")
     List<Song> findAllSongs();
 }

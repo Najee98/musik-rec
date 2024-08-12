@@ -44,6 +44,7 @@ public class SongServiceImpl implements SongService {
             response.setName(s.getTitle());
             response.setArtist(s.getArtist().getName());
             response.setImageUrl(s.getImageUrl());
+            response.setPreviewUrl(s.getPreviewUrl());
 
             responseList.add(response);
         }

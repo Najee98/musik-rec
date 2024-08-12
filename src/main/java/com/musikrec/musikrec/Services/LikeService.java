@@ -1,20 +1,17 @@
 package com.musikrec.musikrec.Services;
 
-import com.musikrec.musikrec.Dto.Responses.LikeResponseDto;
+import com.musikrec.musikrec.Dto.Responses.SongResponseDto;
 
 import java.util.List;
 
 public interface LikeService {
 
 
-    List<LikeResponseDto> getAllLikeForUser();
-
-
+    List<SongResponseDto> getAllLikeForUser();
 
     void insertLike(Integer songId);
 
-
-    Integer deleteLike(Integer id);
+    void DeleteLike(Integer id);
 
 
 
