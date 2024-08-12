@@ -13,12 +13,9 @@ import java.util.List;
 @Repository
 public interface PlaylistRepository extends JpaRepository<Playlist, Integer> {
 
-    @Query("select new com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto(" +
-            "p.id, " +
-            "p.name, " +
-            "p.description) " +
-            "from Playlist p where p.appUser.id = :userId")
-    List<PlaylistResponseDto> getAllPlaylistsForUser(@Param("userId") Integer userId);
+    @Query("SELECT p FROM Playlist p WHERE p.appUser.id = :userId")
+    List<Playlist> getAllPlaylistsForUser(@Param("userId") Integer userId);
+
 
     @Query("select p from Playlist p join fetch p.songs " +
             "where p.id = :playlistId and p.appUser.id = :userId")

@@ -57,17 +57,23 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public Playlist insertPlaylist(PlaylistRequestDto request) {
+    public PlaylistResponseDto insertPlaylist(PlaylistRequestDto request) {
 
         Integer userId = userService.getUserFromLogin().getId();
+        Playlist playlist = new Playlist();
+        playlist.setName(request.getName());
+        playlist.setDescription(request.getDescription());
+        playlist.setAppUser(userService.getUserById(userId));
 
-        Playlist newPlaylist = new Playlist();
+        playlistRepository.save(playlist);
 
-        newPlaylist.setName(request.getName());
-        newPlaylist.setDescription(request.getDescription());
-        newPlaylist.setAppUser(userService.getUserById(userId));
+        PlaylistResponseDto response = new PlaylistResponseDto();
 
-        return playlistRepository.save(newPlaylist);
+        response.setId(playlist.getId());
+        response.setName(playlist.getName());
+        response.setDescription(playlist.getDescription());
+
+        return response;
     }
 
 
@@ -103,16 +109,40 @@ public class PlaylistServiceImp implements PlaylistService {
 
 
     @Override
-    public List<PlaylistResponseDto> getAllPlaylistsForUser() {
+    public List<PlaylistDetailsResponseDto> getAllPlaylistsForUser() {
 
         Integer userId = userService.getUserFromLogin().getId();
 
-        List<PlaylistResponseDto> response = playlistRepository.getAllPlaylistsForUser(userId);
+        List<Playlist> playlists = playlistRepository.getAllPlaylistsForUser(userId);
 
-        if (response.isEmpty())
+        if (playlists.isEmpty()) {
             throw new ResourceNotFoundException("No playlists for user.");
-        else
-            return response;
+        }
 
+        List<PlaylistDetailsResponseDto> responseList = new ArrayList<>();
+
+        for (Playlist playlist : playlists) {
+            PlaylistDetailsResponseDto response = new PlaylistDetailsResponseDto();
+            List<SongResponseDto> songList = new ArrayList<>();
+
+            response.setId(playlist.getId());
+            response.setName(playlist.getName());
+            response.setDescription(playlist.getDescription());
+
+            for (Song s : playlist.getSongs()) {
+                SongResponseDto dto = new SongResponseDto();
+                dto.setId(s.getId());
+                dto.setName(s.getTitle());
+                dto.setAlbum(s.getAlbum().getTitle());
+                dto.setArtist(s.getArtist().getName());
+
+                songList.add(dto);
+            }
+
+            response.setSongs(songList);
+            responseList.add(response);
+        }
+
+        return responseList;
     }
 }

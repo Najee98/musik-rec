@@ -62,7 +62,7 @@ public class SongServiceImpl implements SongService {
         response.setId(song.getId());
         response.setTitle(song.getTitle());
         response.setArtist(song.getArtist().getName());
-        response.setGenre(song.getGenre());
+//        response.setGenre(song.getGenre());
         response.setReleaseYear(song.getReleaseYear());
         response.setAlbumId(song.getAlbum().getId());
         response.setPreviewUrl(song.getPreviewUrl());
@@ -107,10 +107,16 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public List<SongSearchResponse> searchSong(String query) {
+    public List<SongResponseDto> searchSong(String query) {
 
-        List<SongSearchResponse> result = songRepository.searchSongs(query);
-        SpotifySearchResponse spotifyResults = spotifyService.searchTracks(query);
+        try{
+            List<SongResponseDto> result = songRepository.searchSongs(query);
+            return result;
+
+        }catch (ResourceNotFoundException e){
+            throw e;
+        }
+  //      SpotifySearchResponse spotifyResults = spotifyService.searchTracks(query);
 
 //        for(SpotifySearchResponse s : spotifyResults){
 //
@@ -125,9 +131,6 @@ public class SongServiceImpl implements SongService {
 //            song.setPreviewUrl(s.getTracks().getItems().get(i).getPreview_url());
 //
 //        }
-
-        return result;
-
     }
 
     @Override
