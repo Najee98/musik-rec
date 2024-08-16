@@ -18,7 +18,7 @@ public interface SongService {
 
     void removeSongFromPlaylist(Integer songId, Integer playlistId);
 
-    List<SongSearchResponse> searchSong(String query);
+    List<SongResponseDto> searchSong(String query);
 
     void insertHistory(Integer songId);
 

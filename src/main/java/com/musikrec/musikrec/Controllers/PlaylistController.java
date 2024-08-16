@@ -5,7 +5,6 @@ import com.musikrec.musikrec.Dto.Requests.PlaylistUpdateRequest;
 import com.musikrec.musikrec.Dto.Responses.PlaylistDetailsResponseDto;
 import com.musikrec.musikrec.Dto.Responses.PlaylistResponseDto;
 import com.musikrec.musikrec.Dto.Requests.PlaylistRequestDto;
-import com.musikrec.musikrec.Models.Playlist;
 import com.musikrec.musikrec.Services.PlaylistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,7 @@ public class PlaylistController {
     private final PlaylistService playlistService;
 
     @GetMapping()
-    public ResponseEntity<List<PlaylistResponseDto>> getAllPlaylistForUser() {
+    public ResponseEntity<List<PlaylistDetailsResponseDto>> getAllPlaylistForUser() {
         return ResponseEntity.ok(playlistService.getAllPlaylistsForUser());
     }
 
@@ -34,9 +33,8 @@ public class PlaylistController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<Object> insertPlaylist(@RequestBody PlaylistRequestDto request) {
-        playlistService.insertPlaylist(request);
-        return new ResponseEntity<>("{ \"message\": \" Playlist added successfully \" }", HttpStatus.OK);
+    public ResponseEntity<PlaylistResponseDto> insertPlaylist(@RequestBody PlaylistRequestDto request) {
+        return new ResponseEntity<>(playlistService.insertPlaylist(request),HttpStatus.OK);
     }
 
 

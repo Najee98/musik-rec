@@ -12,7 +12,7 @@ public interface PlaylistService {
     PlaylistDetailsResponseDto getPlaylist(Integer playlistId);
 
 
-    Playlist insertPlaylist(PlaylistRequestDto request);
+    PlaylistResponseDto insertPlaylist(PlaylistRequestDto request);
 
 
     void updatePlaylist(Integer playlistId, PlaylistUpdateRequest request);
@@ -21,5 +21,5 @@ public interface PlaylistService {
     Integer deletePlaylist(Integer playlistId);
 
 
-    List<PlaylistResponseDto> getAllPlaylistsForUser();
+    List<PlaylistDetailsResponseDto> getAllPlaylistsForUser();
 }

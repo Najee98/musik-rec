@@ -23,7 +23,7 @@ public class Song {
 
     private String title;
 
-    private String genre;
+//    private String genre;
 
     private String releaseYear;
 
