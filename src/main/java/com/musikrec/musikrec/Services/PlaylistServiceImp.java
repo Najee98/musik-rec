@@ -47,6 +47,9 @@ public class PlaylistServiceImp implements PlaylistService {
             dto.setName(s.getTitle());
             dto.setAlbum(s.getTitle());
             dto.setArtist(s.getArtist().getName());
+            dto.setImageUrl(s.getImageUrl());
+            dto.setPreviewUrl(s.getPreviewUrl());
+
 
             songList.add(dto);
         }
@@ -110,10 +113,7 @@ public class PlaylistServiceImp implements PlaylistService {
 
         List<PlaylistResponseDto> response = playlistRepository.getAllPlaylistsForUser(userId);
 
-        if (response.isEmpty())
-            throw new ResourceNotFoundException("No playlists for user.");
-        else
-            return response;
+        return response;
 
     }
 }
