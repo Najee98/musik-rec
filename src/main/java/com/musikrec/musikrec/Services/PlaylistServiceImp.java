@@ -97,19 +97,21 @@ public class PlaylistServiceImp implements PlaylistService {
 
     }
 
-
     @Override
     public Integer deletePlaylist(Integer playlistId) {
-        Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
+        Playlist playlist = playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Playlist not found"));
 
-        if (playlistOptional.isEmpty())
-            throw new ResourceNotFoundException("playlist not found!");
-        else {
-            playlistRepository.deleteById(playlistId);
-            return playlistId;
+        // Clear the relationship between the playlist and songs
+        for (Song song : playlist.getSongs()) {
+            song.getSongPlaylists().remove(playlist);
         }
-    }
+        playlist.getSongs().clear();
 
+        playlistRepository.delete(playlist);
+
+        return playlistId;
+    }
 
 
     @Override
@@ -118,10 +120,6 @@ public class PlaylistServiceImp implements PlaylistService {
         Integer userId = userService.getUserFromLogin().getId();
 
         List<Playlist> playlists = playlistRepository.getAllPlaylistsForUser(userId);
-
-        if (playlists.isEmpty()) {
-            throw new ResourceNotFoundException("No playlists for user.");
-        }
 
         List<PlaylistDetailsResponseDto> responseList = new ArrayList<>();
 
@@ -139,6 +137,8 @@ public class PlaylistServiceImp implements PlaylistService {
                 dto.setName(s.getTitle());
                 dto.setAlbum(s.getAlbum().getTitle());
                 dto.setArtist(s.getArtist().getName());
+                dto.setImageUrl(s.getImageUrl());
+                dto.setPreviewUrl(s.getPreviewUrl());
 
                 songList.add(dto);
             }

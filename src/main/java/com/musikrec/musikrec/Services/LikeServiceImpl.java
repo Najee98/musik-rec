@@ -29,13 +29,7 @@ public class LikeServiceImpl implements LikeService {
 
         Integer userId = userService.getUserFromLogin().getId();
 
-        List<SongResponseDto> response = likeRepository.getAllLikeForUser(userId);
-
-                if (response.isEmpty())
-                    throw new ResourceNotFoundException("No like for user.");
-                else
-                    return response;
-
+        return likeRepository.getAllLikeForUser(userId);
     }
 
     @Override
@@ -61,12 +55,20 @@ public class LikeServiceImpl implements LikeService {
     public void DeleteLike(Integer id) {
         Optional<Like> likeOptional = likeRepository.findById(id);
 
-        if (likeOptional.isEmpty())
+        if (likeOptional.isEmpty()) {
             throw new ResourceNotFoundException("Like not found!");
-        else {
+        } else {
+            Like like = likeOptional.get();
+
+            // Remove the association with the Song before deleting the Like
+            if (like.getSong() != null) {
+                like.setSong(null);
+            }
+
             likeRepository.deleteById(id);
         }
     }
+
 
 }
 
